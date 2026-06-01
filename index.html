@@ -1,12 +1,1519 @@
-<html>
-  <head>
-    <title>My Web Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Welcome to My Web Page</h1>
-    <p>This is a sample web page created for demonstration purposes.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Consulting Frankfurt | AI & Digital Transformation</title>
+  <meta name="description" content="Freelance IT Consultant in Frankfurt am Main. 35+ years in Banking IT & Telecoms. AI solutions for local businesses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a0f1e;
+      --navy-mid: #111827;
+      --navy-light: #1a2540;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --gold-pale: #f5e6b8;
+      --cream: #f8f4ec;
+      --white: #ffffff;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+      --border: rgba(201,168,76,0.2);
+      --radius: 4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text-body);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 4rem 6rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(26,37,64,0.8) 0%, transparent 60%),
+        linear-gradient(135deg, #0a0f1e 0%, #111827 50%, #0f1a2e 100%);
+    }
+
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-body);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      border: 2px solid var(--gold);
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--border);
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 6rem 4rem;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 em { font-style: italic; color: var(--gold-light); }
+
+    .section-intro {
+      max-width: 620px;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      margin-bottom: 4rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--navy-mid); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .about-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .expertise-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .expertise-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+
+    .expertise-list li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--navy); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .service-card ul li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .service-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.75rem;
+    }
+
+    /* ─── PROCESS ─── */
+    #process { background: var(--navy-mid); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+      opacity: 0.3;
+    }
+
+    .process-step {
+      padding: 0 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 4rem;
+      height: 4rem;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin: 0 auto 1.5rem;
+      background: var(--navy-mid);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .process-step p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--navy); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .pricing-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, var(--navy-light), rgba(201,168,76,0.05));
+    }
+
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2rem;
+    }
+
+    .pricing-tier {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .pricing-price {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .price-amount span {
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--text-body);
+    }
+
+    .pricing-features li .check {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ─── TESTIMONIAL / TRUST ─── */
+    #trust { background: var(--navy-mid); }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .trust-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius);
+    }
+
+    .trust-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .trust-text {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .trust-author {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .trust-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--navy); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text-body);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+
+    .contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group select option { background: var(--navy-light); }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #060a14;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .process-steps::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy-mid); border-bottom: 1px solid var(--border); padding: 1.5rem; gap: 1.2rem; }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 4rem; }
+      .hero-stats { gap: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .lang-switcher { gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <a href="#" class="nav-brand" data-i18n="brand">IT Consulting Frankfurt</a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#process" data-i18n="nav_process">Process</a></li>
+      <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      <li>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" data-i18n="hero_eyebrow">Frankfurt am Main · AI Consultant</div>
+      <h1>
+        <span data-i18n="hero_h1_1">Grow Your Business</span><br/>
+        <em data-i18n="hero_h1_2">with Intelligent AI</em>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">
+        Over 35 years of Banking IT & Telecommunications expertise, now focused on helping Frankfurt's local businesses increase revenue, reduce costs, and work smarter — through practical, proven AI solutions.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">35+</div>
+          <div class="stat-label" data-i18n="stat1">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100+</div>
+          <div class="stat-label" data-i18n="stat2">Projects Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label" data-i18n="stat3">Local Businesses Helped</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary" data-i18n="hero_cta1">Book a Free Discovery Call</a>
+        <a href="#services" class="btn-outline" data-i18n="hero_cta2">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <div class="section-label" data-i18n="about_label">About Me</div>
+          <h2><em data-i18n="about_h2_1">Expert Guidance,</em><br/><span data-i18n="about_h2_2">Real-World Results</span></h2>
+          <p class="section-intro" data-i18n="about_intro">
+            Based in Frankfurt am Main, I bring over three decades of hands-on experience from some of Europe's most demanding IT environments — major banking institutions and telecommunications giants. I translate that deep technical knowledge into straightforward, affordable AI solutions for businesses like yours.
+          </p>
+          <p style="font-size:0.92rem;color:var(--text-muted);line-height:1.8;" data-i18n="about_body">
+            I'm not a salesperson pushing software subscriptions — I'm an independent consultant who sits with you, understands your operation, and builds exactly what will make a measurable difference. From a single chatbot to a fully automated customer service workflow, I handle it all, start to finish.
+          </p>
+          <div class="about-badges" style="margin-top:2rem;">
+            <span class="badge">Banking IT</span>
+            <span class="badge">Telecommunications</span>
+            <span class="badge">AI Integration</span>
+            <span class="badge">Process Automation</span>
+            <span class="badge">Digital Transformation</span>
+            <span class="badge">Frankfurt am Main</span>
+          </div>
+        </div>
+        <div class="about-visual reveal">
+          <div class="about-card">
+            <div class="about-card-title" data-i18n="about_card_title">Core Expertise</div>
+            <ul class="expertise-list">
+              <li data-i18n="exp1">AI Chatbot & Voice Assistant Integration</li>
+              <li data-i18n="exp2">Automated Customer Service Systems</li>
+              <li data-i18n="exp3">Marketing Automation & Content AI</li>
+              <li data-i18n="exp4">Business Process Optimisation</li>
+              <li data-i18n="exp5">CRM & Scheduling Automation</li>
+              <li data-i18n="exp6">Data Analysis & Business Intelligence</li>
+              <li data-i18n="exp7">IT Infrastructure & Cloud Migrations</li>
+              <li data-i18n="exp8">Cybersecurity & GDPR Compliance</li>
+              <li data-i18n="exp9">Staff Training & Change Management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label" data-i18n="services_label">What I Do</div>
+      <h2><span data-i18n="services_h2_1">AI Services That</span><br/><em data-i18n="services_h2_2">Drive Real Growth</em></h2>
+      <p class="section-intro" data-i18n="services_intro">
+        Practical, proven AI tools — tailored for Frankfurt businesses in retail, hospitality, professional services, healthcare, and more. No technical knowledge required on your side.
+      </p>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <span class="service-icon">🤖</span>
+          <h3 data-i18n="s1_title">AI Customer Service</h3>
+          <p data-i18n="s1_desc">Never miss a customer enquiry again. Intelligent chatbots and voice assistants handle your FAQs, bookings, and support 24/7 — in German and English.</p>
+          <ul>
+            <li data-i18n="s1_li1">WhatsApp Business auto-replies</li>
+            <li data-i18n="s1_li2">Meta Business Suite AI chatbot</li>
+            <li data-i18n="s1_li3">AI voice answering service</li>
+            <li data-i18n="s1_li4">Appointment booking automation</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-icon">✍️</span>
+          <h3 data-i18n="s2_title">Marketing & Content AI</h3>
+          <p data-i18n="s2_desc">Generate professional marketing content in minutes. Social posts, email campaigns, ad copy, and promotional graphics — all produced with AI tools, guided by my expertise.</p>
+          <ul>
+            <li data-i18n="s2_li1">Social media captions & copy</li>
+            <li data-i18n="s2_li2">AI-powered graphic design (Canva)</li>
+            <li data-i18n="s2_li3">Promotional email campaigns</li>
+            <li data-i18n="s2_li4">Local ad copy generation</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-icon">📅</span>
+          <h3 data-i18n="s3_title">Scheduling & Admin Automation</h3>
+          <p data-i18n="s3_desc">Eliminate back-and-forth scheduling and manual admin. Let AI handle bookings, reminders, and meeting notes while your team focuses on serving customers.</p>
+          <ul>
+            <li data-i18n="s3_li1">Calendly / Square Appointments setup</li>
+            <li data-i18n="s3_li2">Automated SMS/email reminders</li>
+            <li data-i18n="s3_li3">AI meeting transcription (Otter.ai)</li>
+            <li data-i18n="s3_li4">Action item extraction & follow-up</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal">
+          <span class="service-icon">📊</span>
+          <h3 data-i18n="s4_title">Sales & Revenue Intelligence</h3>
+          <p data-i18n="s4_desc">Identify your most profitable customers, optimise pricing, and uncover hidden revenue opportunities using AI-powered business analytics built on your own data.</p>
+          <ul>
+            <li data-i18n="s4_li1">Customer behaviour analysis</li>
+            <li data-i18n="s4_li2">AI-powered sales forecasting</li>
+            <li data-i18n="s4_li3">Upselling & cross-sell automation</li>
+            <li data-i18n="s4_li4">Competitor & market monitoring</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-icon">🔗</span>
+          <h3 data-i18n="s5_title">Systems Integration</h3>
+          <p data-i18n="s5_desc">Siloed software costing you time? I connect your existing tools — POS, CRM, accounting, e-commerce — into a seamless, automated workflow.</p>
+          <ul>
+            <li data-i18n="s5_li1">API & webhook integrations</li>
+            <li data-i18n="s5_li2">CRM automation (HubSpot, Zoho)</li>
+            <li data-i18n="s5_li3">E-commerce & payment systems</li>
+            <li data-i18n="s5_li4">Cloud migration & infrastructure</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-icon">🛡️</span>
+          <h3 data-i18n="s6_title">Security & Compliance</h3>
+          <p data-i18n="s6_desc">Stay compliant with GDPR and EU AI regulations while protecting your customer data. Essential for any business adopting new digital tools.</p>
+          <ul>
+            <li data-i18n="s6_li1">GDPR compliance audits</li>
+            <li data-i18n="s6_li2">Data protection setup</li>
+            <li data-i18n="s6_li3">Cybersecurity fundamentals</li>
+            <li data-i18n="s6_li4">EU AI Act readiness</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-inner">
+      <div class="section-label" data-i18n="process_label">How It Works</div>
+      <h2><span data-i18n="process_h2_1">A Simple,</span><br/><em data-i18n="process_h2_2">Transparent Process</em></h2>
+      <p class="section-intro" data-i18n="process_intro">
+        From first conversation to fully operational — here's exactly how I work with every client.
+      </p>
+      <div class="process-steps reveal">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h3 data-i18n="p1_title">Discovery</h3>
+          <p data-i18n="p1_desc">We meet (in person or online) to understand your business, pain points, goals, and budget. No jargon, no pressure.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h3 data-i18n="p2_title">Strategy</h3>
+          <p data-i18n="p2_desc">I deliver a clear, written plan showing exactly which AI tools I recommend, why, the expected ROI, and full cost transparency.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h3 data-i18n="p3_title">Build & Deploy</h3>
+          <p data-i18n="p3_desc">I configure, integrate, and test everything. You're kept informed at every step, and I train your team before going live.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h3 data-i18n="p4_title">Support & Grow</h3>
+          <p data-i18n="p4_desc">Ongoing maintenance, updates, and optimisation as your business grows and new AI capabilities emerge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-inner">
+      <div class="section-label" data-i18n="pricing_label">Investment</div>
+      <h2><span data-i18n="pricing_h2_1">Clear, Honest</span><br/><em data-i18n="pricing_h2_2">Pricing</em></h2>
+      <p class="section-intro" data-i18n="pricing_intro">
+        No hidden fees. No long-term lock-ins. Just straightforward pricing built around what your business actually needs. All prices exclusive of VAT.
+      </p>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card reveal">
+          <div class="pricing-tier" data-i18n="tier1">Consultancy</div>
+          <div class="pricing-name" data-i18n="tier1_name">Discovery &amp; Strategy</div>
+          <p class="pricing-desc" data-i18n="tier1_desc">For business owners who want a clear picture of what AI can do for them before committing to anything.</p>
+          <div class="pricing-price">
+            <div class="price-amount"><span>€</span>150<small style="font-size:1rem;color:var(--text-muted)">/hr</small></div>
+            <div class="price-note" data-i18n="tier1_note">Typical engagement: 2–4 hours</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-i18n="t1f1">In-person or video consultation</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t1f2">Business needs assessment</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t1f3">AI opportunity mapping</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t1f4">Written recommendations report</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t1f5">ROI & cost-saving projections</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t1f6">Tool & vendor comparison</span></li>
+          </ul>
+          <a href="#contact" class="btn-outline" style="width:100%;text-align:center;" data-i18n="tier_cta1">Book a Call</a>
+        </div>
+
+        <div class="pricing-card featured reveal reveal-delay-1">
+          <div class="pricing-badge" data-i18n="popular_badge">Most Popular</div>
+          <div class="pricing-tier" data-i18n="tier2">Build &amp; Integrate</div>
+          <div class="pricing-name" data-i18n="tier2_name">Implementation</div>
+          <p class="pricing-desc" data-i18n="tier2_desc">Full setup, configuration, and integration of your chosen AI tools — handled entirely by me.</p>
+          <div class="pricing-price">
+            <div class="price-amount"><span>€</span>1,200+</div>
+            <div class="price-note" data-i18n="tier2_note">Project-based, quoted per scope</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-i18n="t2f1">All consultancy deliverables included</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t2f2">Full tool setup & configuration</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t2f3">Integration with existing systems</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t2f4">Testing, QA, and go-live support</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t2f5">Staff training session (2 hrs)</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t2f6">30-day post-launch support</span></li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="width:100%;text-align:center;" data-i18n="tier_cta2">Get a Quote</a>
+        </div>
+
+        <div class="pricing-card reveal reveal-delay-2">
+          <div class="pricing-tier" data-i18n="tier3">Managed Operations</div>
+          <div class="pricing-name" data-i18n="tier3_name">Retainer Support</div>
+          <p class="pricing-desc" data-i18n="tier3_desc">Ongoing management, monitoring, updates, and optimisation. Your AI systems stay current and effective as your business evolves.</p>
+          <div class="pricing-price">
+            <div class="price-amount"><span>€</span>499<small style="font-size:1rem;color:var(--text-muted)">/mo</small></div>
+            <div class="price-note" data-i18n="tier3_note">Minimum 3-month engagement</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-i18n="t3f1">System monitoring & uptime</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t3f2">Monthly performance reporting</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t3f3">Software updates & upgrades</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t3f4">Content & chatbot updates</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t3f5">Priority email & phone support</span></li>
+            <li><span class="check">✓</span> <span data-i18n="t3f6">Quarterly strategy review</span></li>
+          </ul>
+          <a href="#contact" class="btn-outline" style="width:100%;text-align:center;" data-i18n="tier_cta3">Start Today</a>
+        </div>
+
+      </div>
+      <p style="text-align:center;margin-top:2.5rem;font-size:0.82rem;color:var(--text-muted);" data-i18n="pricing_note">
+        All pricing listed exclusive of German VAT (MwSt). Custom packages available for larger businesses or specific project scopes. Initial 30-minute discovery call always free.
+      </p>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section id="trust">
+    <div class="section-inner">
+      <div class="section-label" data-i18n="trust_label">Client Voices</div>
+      <h2><em data-i18n="trust_h2">What Clients Say</em></h2>
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <div class="trust-quote">"</div>
+          <p class="trust-text" data-i18n="q1">Within three weeks of setting up the WhatsApp chatbot, we stopped losing customers who called after hours. Our booking rate increased by 30%. Absolutely worth every cent.</p>
+          <div class="trust-author" data-i18n="q1_author">Maria K.</div>
+          <div class="trust-role" data-i18n="q1_role">Owner, Hair Salon — Sachsenhausen</div>
+        </div>
+        <div class="trust-card reveal reveal-delay-1">
+          <div class="trust-quote">"</div>
+          <p class="trust-text" data-i18n="q2">He explained everything in plain language, built exactly what he promised, and our admin workload dropped by nearly half. I didn't think AI was relevant to a small restaurant — I was wrong.</p>
+          <div class="trust-author" data-i18n="q2_author">Thomas B.</div>
+          <div class="trust-role" data-i18n="q2_role">Restaurateur — Bornheim</div>
+        </div>
+        <div class="trust-card reveal reveal-delay-2">
+          <div class="trust-quote">"</div>
+          <p class="trust-text" data-i18n="q3">The banking IT background gave me confidence. This isn't someone learning on the job — it's 35 years of real experience applied to a real business problem. Exceptional value.</p>
+          <div class="trust-author" data-i18n="q3_author">Sandra L.</div>
+          <div class="trust-role" data-i18n="q3_role">Managing Director, Legal Practice — Frankfurt Westend</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label" data-i18n="contact_label">Get In Touch</div>
+      <h2><span data-i18n="contact_h2_1">Let's Talk About</span><br/><em data-i18n="contact_h2_2">Your Business</em></h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3 data-i18n="contact_subtitle">Your first call is free</h3>
+          <p data-i18n="contact_body">
+            Book a no-obligation 30-minute discovery call. Tell me about your business, your biggest challenges, and what you'd like to achieve. I'll give you honest advice — even if AI isn't the right answer for you right now.
+          </p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <span data-i18n="contact_loc">Frankfurt am Main, Germany</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🌐</div>
+              <span data-i18n="contact_lang">Deutsch · English · Français</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <span data-i18n="contact_hours">Mon–Fri 08:00–18:00 · Flexible by arrangement</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <span data-i18n="contact_response">Response within 1 business day</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal reveal-delay-1">
+          <div class="form-group">
+            <label data-i18n="form_name">Your Name</label>
+            <input type="text" placeholder="Max Mustermann" />
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_email">Email Address</label>
+            <input type="email" placeholder="max@firma.de" />
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_business">Type of Business</label>
+            <input type="text" id="form_business_input" placeholder="e.g. Restaurant, Retail, Law Firm" />
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_interest">I'm Interested In</label>
+            <select id="interestSelect">
+              <option value="" data-i18n="form_select">Select a service...</option>
+              <option value="consult" data-i18n="opt1">Discovery Consultation</option>
+              <option value="chatbot" data-i18n="opt2">AI Chatbot / Customer Service</option>
+              <option value="marketing" data-i18n="opt3">Marketing & Content AI</option>
+              <option value="scheduling" data-i18n="opt4">Scheduling Automation</option>
+              <option value="integration" data-i18n="opt5">Systems Integration</option>
+              <option value="retainer" data-i18n="opt6">Retainer / Ongoing Support</option>
+              <option value="other" data-i18n="opt7">Not sure — let's discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_message">Message (optional)</label>
+            <textarea id="form_message_input" placeholder="Tell me a little about your business and what you'd like to improve..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;font-size:0.9rem;" onclick="handleSubmit()" data-i18n="form_submit">Send Message</button>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;text-align:center;" data-i18n="form_note">Your details will never be shared with third parties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand" data-i18n="brand">IT Consulting Frankfurt</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2025 · Frankfurt am Main · AI & Digital Transformation Consulting</div>
+  </footer>
+
+  <script>
+    // ─── TRANSLATIONS ───────────────────────────────────────────────────
+    const i18n = {
+      en: {
+        brand: "IT Consulting Frankfurt",
+        nav_about: "About", nav_services: "Services", nav_process: "Process", nav_pricing: "Pricing", nav_contact: "Contact",
+        hero_eyebrow: "Frankfurt am Main · AI Consultant",
+        hero_h1_1: "Grow Your Business", hero_h1_2: "with Intelligent AI",
+        hero_sub: "Over 35 years of Banking IT & Telecommunications expertise, now focused on helping Frankfurt's local businesses increase revenue, reduce costs, and work smarter — through practical, proven AI solutions.",
+        stat1: "Years Experience", stat2: "Projects Delivered", stat3: "Local Businesses Helped",
+        hero_cta1: "Book a Free Discovery Call", hero_cta2: "Explore Services",
+        about_label: "About Me", about_h2_1: "Expert Guidance,", about_h2_2: "Real-World Results",
+        about_intro: "Based in Frankfurt am Main, I bring over three decades of hands-on experience from some of Europe's most demanding IT environments — major banking institutions and telecommunications giants. I translate that deep technical knowledge into straightforward, affordable AI solutions for businesses like yours.",
+        about_body: "I'm not a salesperson pushing software subscriptions — I'm an independent consultant who sits with you, understands your operation, and builds exactly what will make a measurable difference. From a single chatbot to a fully automated customer service workflow, I handle it all, start to finish.",
+        about_card_title: "Core Expertise",
+        exp1: "AI Chatbot & Voice Assistant Integration", exp2: "Automated Customer Service Systems", exp3: "Marketing Automation & Content AI", exp4: "Business Process Optimisation", exp5: "CRM & Scheduling Automation", exp6: "Data Analysis & Business Intelligence", exp7: "IT Infrastructure & Cloud Migrations", exp8: "Cybersecurity & GDPR Compliance", exp9: "Staff Training & Change Management",
+        services_label: "What I Do", services_h2_1: "AI Services That", services_h2_2: "Drive Real Growth",
+        services_intro: "Practical, proven AI tools — tailored for Frankfurt businesses in retail, hospitality, professional services, healthcare, and more. No technical knowledge required on your side.",
+        s1_title: "AI Customer Service", s1_desc: "Never miss a customer enquiry again. Intelligent chatbots and voice assistants handle your FAQs, bookings, and support 24/7 — in German and English.", s1_li1: "WhatsApp Business auto-replies", s1_li2: "Meta Business Suite AI chatbot", s1_li3: "AI voice answering service", s1_li4: "Appointment booking automation",
+        s2_title: "Marketing & Content AI", s2_desc: "Generate professional marketing content in minutes. Social posts, email campaigns, ad copy, and promotional graphics — all produced with AI tools, guided by my expertise.", s2_li1: "Social media captions & copy", s2_li2: "AI-powered graphic design (Canva)", s2_li3: "Promotional email campaigns", s2_li4: "Local ad copy generation",
+        s3_title: "Scheduling & Admin Automation", s3_desc: "Eliminate back-and-forth scheduling and manual admin. Let AI handle bookings, reminders, and meeting notes while your team focuses on serving customers.", s3_li1: "Calendly / Square Appointments setup", s3_li2: "Automated SMS/email reminders", s3_li3: "AI meeting transcription (Otter.ai)", s3_li4: "Action item extraction & follow-up",
+        s4_title: "Sales & Revenue Intelligence", s4_desc: "Identify your most profitable customers, optimise pricing, and uncover hidden revenue opportunities using AI-powered business analytics built on your own data.", s4_li1: "Customer behaviour analysis", s4_li2: "AI-powered sales forecasting", s4_li3: "Upselling & cross-sell automation", s4_li4: "Competitor & market monitoring",
+        s5_title: "Systems Integration", s5_desc: "Siloed software costing you time? I connect your existing tools — POS, CRM, accounting, e-commerce — into a seamless, automated workflow.", s5_li1: "API & webhook integrations", s5_li2: "CRM automation (HubSpot, Zoho)", s5_li3: "E-commerce & payment systems", s5_li4: "Cloud migration & infrastructure",
+        s6_title: "Security & Compliance", s6_desc: "Stay compliant with GDPR and EU AI regulations while protecting your customer data. Essential for any business adopting new digital tools.", s6_li1: "GDPR compliance audits", s6_li2: "Data protection setup", s6_li3: "Cybersecurity fundamentals", s6_li4: "EU AI Act readiness",
+        process_label: "How It Works", process_h2_1: "A Simple,", process_h2_2: "Transparent Process",
+        process_intro: "From first conversation to fully operational — here's exactly how I work with every client.",
+        p1_title: "Discovery", p1_desc: "We meet (in person or online) to understand your business, pain points, goals, and budget. No jargon, no pressure.",
+        p2_title: "Strategy", p2_desc: "I deliver a clear, written plan showing exactly which AI tools I recommend, why, the expected ROI, and full cost transparency.",
+        p3_title: "Build & Deploy", p3_desc: "I configure, integrate, and test everything. You're kept informed at every step, and I train your team before going live.",
+        p4_title: "Support & Grow", p4_desc: "Ongoing maintenance, updates, and optimisation as your business grows and new AI capabilities emerge.",
+        pricing_label: "Investment", pricing_h2_1: "Clear, Honest", pricing_h2_2: "Pricing",
+        pricing_intro: "No hidden fees. No long-term lock-ins. Just straightforward pricing built around what your business actually needs. All prices exclusive of VAT.",
+        tier1: "Consultancy", tier1_name: "Discovery & Strategy", tier1_desc: "For business owners who want a clear picture of what AI can do for them before committing to anything.", tier1_note: "Typical engagement: 2–4 hours",
+        t1f1: "In-person or video consultation", t1f2: "Business needs assessment", t1f3: "AI opportunity mapping", t1f4: "Written recommendations report", t1f5: "ROI & cost-saving projections", t1f6: "Tool & vendor comparison",
+        tier_cta1: "Book a Call",
+        tier2: "Build & Integrate", tier2_name: "Implementation", tier2_desc: "Full setup, configuration, and integration of your chosen AI tools — handled entirely by me.", tier2_note: "Project-based, quoted per scope",
+        t2f1: "All consultancy deliverables included", t2f2: "Full tool setup & configuration", t2f3: "Integration with existing systems", t2f4: "Testing, QA, and go-live support", t2f5: "Staff training session (2 hrs)", t2f6: "30-day post-launch support",
+        tier_cta2: "Get a Quote", popular_badge: "Most Popular",
+        tier3: "Managed Operations", tier3_name: "Retainer Support", tier3_desc: "Ongoing management, monitoring, updates, and optimisation. Your AI systems stay current and effective as your business evolves.", tier3_note: "Minimum 3-month engagement",
+        t3f1: "System monitoring & uptime", t3f2: "Monthly performance reporting", t3f3: "Software updates & upgrades", t3f4: "Content & chatbot updates", t3f5: "Priority email & phone support", t3f6: "Quarterly strategy review",
+        tier_cta3: "Start Today",
+        pricing_note: "All pricing listed exclusive of German VAT (MwSt). Custom packages available for larger businesses or specific project scopes. Initial 30-minute discovery call always free.",
+        trust_label: "Client Voices", trust_h2: "What Clients Say",
+        q1: "Within three weeks of setting up the WhatsApp chatbot, we stopped losing customers who called after hours. Our booking rate increased by 30%. Absolutely worth every cent.", q1_author: "Maria K.", q1_role: "Owner, Hair Salon — Sachsenhausen",
+        q2: "He explained everything in plain language, built exactly what he promised, and our admin workload dropped by nearly half. I didn't think AI was relevant to a small restaurant — I was wrong.", q2_author: "Thomas B.", q2_role: "Restaurateur — Bornheim",
+        q3: "The banking IT background gave me confidence. This isn't someone learning on the job — it's 35 years of real experience applied to a real business problem. Exceptional value.", q3_author: "Sandra L.", q3_role: "Managing Director, Legal Practice — Frankfurt Westend",
+        contact_label: "Get In Touch", contact_h2_1: "Let's Talk About", contact_h2_2: "Your Business",
+        contact_subtitle: "Your first call is free", contact_body: "Book a no-obligation 30-minute discovery call. Tell me about your business, your biggest challenges, and what you'd like to achieve. I'll give you honest advice — even if AI isn't the right answer for you right now.",
+        contact_loc: "Frankfurt am Main, Germany", contact_lang: "Deutsch · English · Français", contact_hours: "Mon–Fri 08:00–18:00 · Flexible by arrangement", contact_response: "Response within 1 business day",
+        form_name: "Your Name", form_email: "Email Address", form_business: "Type of Business", form_interest: "I'm Interested In", form_select: "Select a service...", form_message: "Message (optional)", form_submit: "Send Message", form_note: "Your details will never be shared with third parties.",
+        opt1: "Discovery Consultation", opt2: "AI Chatbot / Customer Service", opt3: "Marketing & Content AI", opt4: "Scheduling Automation", opt5: "Systems Integration", opt6: "Retainer / Ongoing Support", opt7: "Not sure — let's discuss",
+        footer_copy: "© 2025 · Frankfurt am Main · AI & Digital Transformation Consulting",
+      },
+      de: {
+        brand: "IT-Beratung Frankfurt",
+        nav_about: "Über mich", nav_services: "Leistungen", nav_process: "Vorgehen", nav_pricing: "Preise", nav_contact: "Kontakt",
+        hero_eyebrow: "Frankfurt am Main · KI-Berater",
+        hero_h1_1: "Steigern Sie Ihren Umsatz", hero_h1_2: "mit intelligenter KI",
+        hero_sub: "Über 35 Jahre Erfahrung in Banking-IT und Telekommunikation – jetzt im Dienst Frankfurter Unternehmen. Ich helfe Ihnen, Umsätze zu steigern, Kosten zu senken und effizienter zu arbeiten – mit praxiserprobten KI-Lösungen.",
+        stat1: "Jahre Erfahrung", stat2: "Projekte umgesetzt", stat3: "Lokalen Betrieben geholfen",
+        hero_cta1: "Kostenloses Erstgespräch buchen", hero_cta2: "Leistungen entdecken",
+        about_label: "Über mich", about_h2_1: "Expertenwissen,", about_h2_2: "messbare Ergebnisse",
+        about_intro: "Als Frankfurter IT-Berater mit über drei Jahrzehnten Berufserfahrung aus Großbanken und Telekommunikationsunternehmen übersetze ich technisches Fachwissen in klare, erschwingliche KI-Lösungen für Ihren Betrieb.",
+        about_body: "Ich bin kein Softwareverkäufer – ich bin ein unabhängiger Berater. Ich setze mich mit Ihnen zusammen, verstehe Ihr Geschäft und baue genau das, was wirklich einen Unterschied macht. Vom einfachen Chatbot bis zur vollautomatisierten Kundenkommunikation – alles aus einer Hand.",
+        about_card_title: "Kernkompetenzen",
+        exp1: "KI-Chatbot & Sprachassistenten-Integration", exp2: "Automatisierter Kundenservice", exp3: "Marketing-Automatisierung & Content-KI", exp4: "Geschäftsprozessoptimierung", exp5: "CRM- & Terminbuchungsautomatisierung", exp6: "Datenanalyse & Business Intelligence", exp7: "IT-Infrastruktur & Cloud-Migration", exp8: "Cybersicherheit & DSGVO-Compliance", exp9: "Mitarbeiterschulung & Change Management",
+        services_label: "Meine Leistungen", services_h2_1: "KI-Lösungen, die", services_h2_2: "echtes Wachstum bringen",
+        services_intro: "Praxiserprobte KI-Tools für Frankfurter Betriebe in Handel, Gastronomie, freien Berufen, Gesundheit und mehr. Kein technisches Vorwissen nötig.",
+        s1_title: "KI-Kundenservice", s1_desc: "Keine Kundenanfrage mehr verpassen. Intelligente Chatbots und Sprachassistenten beantworten Fragen, nehmen Buchungen an und bieten Support – rund um die Uhr, auf Deutsch und Englisch.", s1_li1: "WhatsApp Business Auto-Antworten", s1_li2: "KI-Chatbot für Meta Business Suite", s1_li3: "KI-Sprachansagedienst", s1_li4: "Automatische Terminbuchung",
+        s2_title: "Marketing & Content-KI", s2_desc: "Professionelle Marketinginhalte in Minuten erstellen. Social-Media-Posts, E-Mail-Kampagnen, Werbetexte und Grafiken – mit KI-Tools, begleitet von meiner Expertise.", s2_li1: "Social-Media-Texte & Captions", s2_li2: "KI-gestütztes Grafikdesign (Canva)", s2_li3: "Werbe-E-Mail-Kampagnen", s2_li4: "Lokale Werbetexte",
+        s3_title: "Terminplanung & Verwaltung", s3_desc: "Schluss mit manueller Terminabstimmung. Lassen Sie KI Buchungen, Erinnerungen und Besprechungsnotizen übernehmen – Ihr Team konzentriert sich auf die Kunden.", s3_li1: "Calendly / Square Appointments", s3_li2: "Automatische SMS-/E-Mail-Erinnerungen", s3_li3: "KI-Meetingtranskription (Otter.ai)", s3_li4: "Aufgaben-Extraktion & Nachverfolgung",
+        s4_title: "Umsatz- & Vertriebsanalyse", s4_desc: "Die profitabelsten Kunden identifizieren, Preise optimieren und versteckte Umsatzpotenziale aufdecken – mit KI-gestützter Unternehmensanalytik auf Basis Ihrer eigenen Daten.", s4_li1: "Kundenverhaltenanalyse", s4_li2: "KI-gestützte Umsatzprognose", s4_li3: "Upselling-Automatisierung", s4_li4: "Wettbewerbs- & Marktbeobachtung",
+        s5_title: "Systemintegration", s5_desc: "Isolierte Software kostet Zeit? Ich verbinde Ihre bestehenden Tools – Kasse, CRM, Buchhaltung, E-Commerce – zu einem nahtlosen, automatisierten Workflow.", s5_li1: "API- & Webhook-Integrationen", s5_li2: "CRM-Automatisierung (HubSpot, Zoho)", s5_li3: "E-Commerce & Zahlungssysteme", s5_li4: "Cloud-Migration & Infrastruktur",
+        s6_title: "Sicherheit & Compliance", s6_desc: "DSGVO- und EU-KI-Verordnungs-konform bleiben und Kundendaten schützen – unverzichtbar für jeden Betrieb, der digitale Tools einsetzt.", s6_li1: "DSGVO-Compliance-Audits", s6_li2: "Datenschutz-Setup", s6_li3: "Cybersicherheitsgrundlagen", s6_li4: "EU-KI-Gesetz-Bereitschaft",
+        process_label: "Mein Vorgehen", process_h2_1: "Einfach und", process_h2_2: "transparent",
+        process_intro: "Vom ersten Gespräch bis zum laufenden Betrieb – so arbeite ich mit jedem Kunden.",
+        p1_title: "Kennenlernen", p1_desc: "Wir treffen uns persönlich oder online, um Ihr Unternehmen, Ihre Herausforderungen, Ziele und Ihr Budget zu verstehen. Kein Fachjargon, kein Druck.",
+        p2_title: "Strategie", p2_desc: "Ich liefere einen klaren, schriftlichen Plan: welche KI-Tools ich empfehle, warum, der erwartete ROI und volle Kostentransparenz.",
+        p3_title: "Aufbau & Einführung", p3_desc: "Ich konfiguriere, integriere und teste alles. Sie werden laufend informiert, und ich schule Ihr Team vor dem Go-live.",
+        p4_title: "Support & Wachstum", p4_desc: "Laufende Wartung, Updates und Optimierung – damit Ihre KI-Systeme mit Ihrem Unternehmen mitwachsen.",
+        pricing_label: "Investition", pricing_h2_1: "Klare, faire", pricing_h2_2: "Preise",
+        pricing_intro: "Keine versteckten Kosten. Keine langen Vertragsbindungen. Klare Preise, die sich an Ihrem tatsächlichen Bedarf orientieren. Alle Preise zzgl. MwSt.",
+        tier1: "Beratung", tier1_name: "Analyse & Strategie", tier1_desc: "Für Unternehmer, die zuerst verstehen wollen, was KI für sie leisten kann – ohne sich zu verpflichten.", tier1_note: "Typischer Aufwand: 2–4 Stunden",
+        t1f1: "Persönliche oder Videoberatung", t1f2: "Bedarfsanalyse", t1f3: "KI-Potenzialermittlung", t1f4: "Schriftlicher Empfehlungsbericht", t1f5: "ROI- & Kosteneinsparprojektionen", t1f6: "Tool- & Anbietervergleich",
+        tier_cta1: "Termin buchen",
+        tier2: "Aufbau & Integration", tier2_name: "Umsetzung", tier2_desc: "Vollständige Einrichtung, Konfiguration und Integration Ihrer KI-Tools – komplett von mir übernommen.", tier2_note: "Projektbasiert, Angebot nach Umfang",
+        t2f1: "Alle Beratungsleistungen inklusive", t2f2: "Vollständige Tool-Einrichtung", t2f3: "Integration in bestehende Systeme", t2f4: "Tests, QA und Go-live-Unterstützung", t2f5: "Mitarbeiterschulung (2 Std.)", t2f6: "30 Tage Support nach Einführung",
+        tier_cta2: "Angebot anfragen", popular_badge: "Beliebteste Wahl",
+        tier3: "Betrieb & Wartung", tier3_name: "Retainer-Support", tier3_desc: "Laufendes Management, Monitoring, Updates und Optimierung. Ihre KI-Systeme bleiben aktuell und effektiv.", tier3_note: "Mindestlaufzeit 3 Monate",
+        t3f1: "Systemüberwachung & Verfügbarkeit", t3f2: "Monatliche Performance-Berichte", t3f3: "Software-Updates & Upgrades", t3f4: "Content- & Chatbot-Aktualisierungen", t3f5: "Prioritäts-Support per E-Mail & Telefon", t3f6: "Vierteljährliches Strategie-Review",
+        tier_cta3: "Jetzt starten",
+        pricing_note: "Alle Preise verstehen sich zzgl. gesetzlicher MwSt. Individuelle Pakete für größere Betriebe oder spezifische Anforderungen auf Anfrage. Das erste 30-minütige Kennenlerngespräch ist immer kostenlos.",
+        trust_label: "Kundenstimmen", trust_h2: "Was Kunden sagen",
+        q1: "Drei Wochen nach Einrichtung des WhatsApp-Chatbots verloren wir keine Kunden mehr, die außerhalb der Öffnungszeiten anriefen. Unsere Buchungsrate stieg um 30 %. Absolut jeden Cent wert.", q1_author: "Maria K.", q1_role: "Inhaberin, Friseursalon – Sachsenhausen",
+        q2: "Er hat alles in einfacher Sprache erklärt, genau das gebaut, was er versprochen hat, und unser Verwaltungsaufwand sank um fast die Hälfte. Ich dachte, KI sei nichts für ein kleines Restaurant – ich lag falsch.", q2_author: "Thomas B.", q2_role: "Gastronom – Bornheim",
+        q3: "Der Hintergrund in der Banking-IT gab mir das nötige Vertrauen. Das ist kein Lernprojekt – das sind 35 Jahre echter Erfahrung, angewendet auf ein echtes Geschäftsproblem. Außergewöhnliches Preis-Leistungs-Verhältnis.", q3_author: "Sandra L.", q3_role: "Geschäftsführerin, Anwaltskanzlei – Frankfurt Westend",
+        contact_label: "Kontakt", contact_h2_1: "Erzählen Sie mir von", contact_h2_2: "Ihrem Unternehmen",
+        contact_subtitle: "Das Erstgespräch ist kostenlos", contact_body: "Buchen Sie ein unverbindliches 30-minütiges Kennenlerngespräch. Schildern Sie mir Ihr Unternehmen, Ihre größten Herausforderungen und Ihre Ziele. Ich gebe Ihnen ehrliche Einschätzungen – auch wenn KI gerade nicht die richtige Antwort für Sie ist.",
+        contact_loc: "Frankfurt am Main, Deutschland", contact_lang: "Deutsch · Englisch · Französisch", contact_hours: "Mo–Fr 08:00–18:00 Uhr · Flexibel nach Absprache", contact_response: "Antwort innerhalb eines Werktages",
+        form_name: "Ihr Name", form_email: "E-Mail-Adresse", form_business: "Art des Unternehmens", form_interest: "Mein Interesse gilt", form_select: "Leistung auswählen...", form_message: "Nachricht (optional)", form_submit: "Nachricht senden", form_note: "Ihre Daten werden niemals an Dritte weitergegeben.",
+        opt1: "Erstberatung / Analyse", opt2: "KI-Chatbot / Kundenservice", opt3: "Marketing & Content-KI", opt4: "Terminplanung Automatisierung", opt5: "Systemintegration", opt6: "Retainer / laufende Betreuung", opt7: "Noch unsicher – gerne besprechen",
+        footer_copy: "© 2025 · Frankfurt am Main · KI- & Digitalisierungsberatung",
+      },
+      fr: {
+        brand: "Conseil IT Francfort",
+        nav_about: "À propos", nav_services: "Services", nav_process: "Méthode", nav_pricing: "Tarifs", nav_contact: "Contact",
+        hero_eyebrow: "Francfort-sur-le-Main · Consultant IA",
+        hero_h1_1: "Développez Votre Activité", hero_h1_2: "grâce à l'IA Intelligente",
+        hero_sub: "Plus de 35 ans d'expertise en informatique bancaire et télécommunications, au service des entreprises locales de Francfort. J'augmente vos revenus, réduis vos coûts et optimise votre efficacité — avec des solutions IA concrètes et éprouvées.",
+        stat1: "Ans d'expérience", stat2: "Projets livrés", stat3: "Entreprises locales aidées",
+        hero_cta1: "Réserver un appel gratuit", hero_cta2: "Découvrir les services",
+        about_label: "À propos", about_h2_1: "Expertise pointue,", about_h2_2: "Résultats concrets",
+        about_intro: "Basé à Francfort-sur-le-Main, je mets à disposition plus de trois décennies d'expérience terrain dans les environnements IT les plus exigeants d'Europe — grandes banques et groupes de télécommunications. Je traduis cette expertise technique en solutions IA accessibles pour votre entreprise.",
+        about_body: "Je ne suis pas un commercial qui pousse des abonnements logiciels — je suis un consultant indépendant qui s'assoit avec vous, comprend votre activité et construit exactement ce qui fera une différence mesurable. Du simple chatbot au workflow entièrement automatisé, je gère tout de A à Z.",
+        about_card_title: "Domaines d'expertise",
+        exp1: "Chatbots IA & Assistants vocaux", exp2: "Service client automatisé", exp3: "Automatisation marketing & Content IA", exp4: "Optimisation des processus", exp5: "CRM & Automatisation des rendez-vous", exp6: "Analyse de données & BI", exp7: "Infrastructure IT & Migration cloud", exp8: "Cybersécurité & Conformité RGPD", exp9: "Formation & Conduite du changement",
+        services_label: "Ce que je fais", services_h2_1: "Des solutions IA qui", services_h2_2: "génèrent de la croissance",
+        services_intro: "Des outils IA pratiques et éprouvés — adaptés aux commerces, restaurants, professions libérales, et entreprises de santé de Francfort. Aucune compétence technique requise de votre côté.",
+        s1_title: "Service client IA", s1_desc: "Ne manquez plus aucune demande client. Des chatbots intelligents et assistants vocaux répondent à vos FAQ, prennent des réservations et assurent le support 24h/24 — en allemand et en anglais.", s1_li1: "Réponses automatiques WhatsApp Business", s1_li2: "Chatbot IA Meta Business Suite", s1_li3: "Service de réponse vocale IA", s1_li4: "Prise de rendez-vous automatisée",
+        s2_title: "Marketing & IA de contenu", s2_desc: "Créez du contenu marketing professionnel en quelques minutes. Posts sociaux, campagnes email, textes publicitaires et visuels — produits avec des outils IA, guidés par mon expertise.", s2_li1: "Légendes & textes pour réseaux sociaux", s2_li2: "Design graphique IA (Canva)", s2_li3: "Campagnes email promotionnelles", s2_li4: "Textes publicitaires locaux",
+        s3_title: "Planification & administration", s3_desc: "Finis les allers-retours pour la planification et l'admin manuelle. L'IA gère les réservations, rappels et notes de réunion pendant que votre équipe se concentre sur les clients.", s3_li1: "Mise en place Calendly / Square", s3_li2: "Rappels SMS/email automatisés", s3_li3: "Transcription IA des réunions (Otter.ai)", s3_li4: "Extraction des actions & suivi",
+        s4_title: "Intelligence commerciale & revenus", s4_desc: "Identifiez vos clients les plus rentables, optimisez vos tarifs et découvrez des opportunités de revenus cachées grâce à l'analytique IA basée sur vos propres données.", s4_li1: "Analyse du comportement client", s4_li2: "Prévisions de vente IA", s4_li3: "Automatisation de l'upselling", s4_li4: "Veille concurrentielle & marché",
+        s5_title: "Intégration des systèmes", s5_desc: "Des logiciels isolés vous coûtent du temps ? Je connecte vos outils existants — caisse, CRM, comptabilité, e-commerce — en un workflow automatisé et fluide.", s5_li1: "Intégrations API & webhooks", s5_li2: "Automatisation CRM (HubSpot, Zoho)", s5_li3: "Systèmes e-commerce & paiement", s5_li4: "Migration cloud & infrastructure",
+        s6_title: "Sécurité & Conformité", s6_desc: "Restez conforme au RGPD et au règlement européen sur l'IA tout en protégeant vos données clients. Indispensable pour toute entreprise adoptant de nouveaux outils numériques.", s6_li1: "Audits de conformité RGPD", s6_li2: "Mise en place de la protection des données", s6_li3: "Bases de cybersécurité", s6_li4: "Préparation au règlement IA UE",
+        process_label: "Ma méthode", process_h2_1: "Un processus simple", process_h2_2: "et transparent",
+        process_intro: "Du premier échange à la mise en service complète — voici exactement comment je travaille avec chaque client.",
+        p1_title: "Découverte", p1_desc: "Nous nous rencontrons (en personne ou en ligne) pour comprendre votre activité, vos enjeux, objectifs et budget. Sans jargon ni pression.",
+        p2_title: "Stratégie", p2_desc: "Je remets un plan écrit clair précisant les outils IA recommandés, les raisons, le ROI attendu et une transparence totale des coûts.",
+        p3_title: "Construction & déploiement", p3_desc: "Je configure, intègre et teste tout. Vous êtes informé à chaque étape, et je forme vos équipes avant la mise en production.",
+        p4_title: "Support & croissance", p4_desc: "Maintenance continue, mises à jour et optimisation au fur et à mesure que votre entreprise évolue et que de nouvelles capacités IA émergent.",
+        pricing_label: "Investissement", pricing_h2_1: "Des tarifs clairs", pricing_h2_2: "et honnêtes",
+        pricing_intro: "Aucun frais caché. Aucun engagement long terme. Des tarifs simples construits autour de vos besoins réels. Tous les prix hors TVA.",
+        tier1: "Conseil", tier1_name: "Analyse & Stratégie", tier1_desc: "Pour les dirigeants qui souhaitent une vision claire de ce que l'IA peut leur apporter avant de s'engager.", tier1_note: "Engagement typique : 2 à 4 heures",
+        t1f1: "Consultation en personne ou vidéo", t1f2: "Analyse des besoins", t1f3: "Cartographie des opportunités IA", t1f4: "Rapport de recommandations écrit", t1f5: "Projections ROI & économies", t1f6: "Comparatif outils & fournisseurs",
+        tier_cta1: "Réserver un appel",
+        tier2: "Construction & Intégration", tier2_name: "Mise en œuvre", tier2_desc: "Mise en place, configuration et intégration complètes de vos outils IA — entièrement pris en charge par moi.", tier2_note: "Sur devis, selon le périmètre",
+        t2f1: "Toutes les livrables conseil inclus", t2f2: "Configuration complète des outils", t2f3: "Intégration aux systèmes existants", t2f4: "Tests, QA et support au lancement", t2f5: "Formation équipe (2h)", t2f6: "Support 30 jours après lancement",
+        tier_cta2: "Demander un devis", popular_badge: "Le plus populaire",
+        tier3: "Gestion opérationnelle", tier3_name: "Support en régie", tier3_desc: "Gestion, surveillance, mises à jour et optimisation continues. Vos systèmes IA restent performants et à jour.", tier3_note: "Engagement minimum 3 mois",
+        t3f1: "Surveillance & disponibilité", t3f2: "Rapports de performance mensuels", t3f3: "Mises à jour & montées de version", t3f4: "Mises à jour contenus & chatbots", t3f5: "Support prioritaire email & téléphone", t3f6: "Revue stratégique trimestrielle",
+        tier_cta3: "Commencer maintenant",
+        pricing_note: "Tous les tarifs indiqués hors TVA allemande. Forfaits personnalisés disponibles pour les entreprises plus importantes. Le premier entretien de découverte de 30 minutes est toujours gratuit.",
+        trust_label: "Témoignages", trust_h2: "Ce que disent mes clients",
+        q1: "Trois semaines après la mise en place du chatbot WhatsApp, nous ne perdions plus de clients qui appelaient en dehors des heures d'ouverture. Notre taux de réservation a augmenté de 30 %. Absolument rentable.", q1_author: "Maria K.", q1_role: "Propriétaire, salon de coiffure — Sachsenhausen",
+        q2: "Il a tout expliqué en langage clair, construit exactement ce qu'il avait promis, et notre charge administrative a chuté de près de moitié. Je ne pensais pas que l'IA était pertinente pour un petit restaurant — j'avais tort.", q2_author: "Thomas B.", q2_role: "Restaurateur — Bornheim",
+        q3: "Son parcours en informatique bancaire m'a inspiré confiance. Ce n'est pas quelqu'un qui apprend sur le tas — c'est 35 ans d'expérience réelle appliquée à un vrai problème d'entreprise. Une valeur exceptionnelle.", q3_author: "Sandra L.", q3_role: "Directrice générale, cabinet juridique — Frankfurt Westend",
+        contact_label: "Contact", contact_h2_1: "Parlons de", contact_h2_2: "Votre Activité",
+        contact_subtitle: "Le premier appel est gratuit", contact_body: "Réservez un appel découverte de 30 minutes sans engagement. Parlez-moi de votre activité, de vos défis et de vos objectifs. Je vous donnerai des conseils honnêtes — même si l'IA n'est pas la bonne réponse pour vous en ce moment.",
+        contact_loc: "Francfort-sur-le-Main, Allemagne", contact_lang: "Allemand · Anglais · Français", contact_hours: "Lun–Ven 08h00–18h00 · Flexible sur arrangement", contact_response: "Réponse sous un jour ouvré",
+        form_name: "Votre nom", form_email: "Adresse e-mail", form_business: "Type d'activité", form_interest: "Je suis intéressé par", form_select: "Sélectionner un service...", form_message: "Message (facultatif)", form_submit: "Envoyer le message", form_note: "Vos coordonnées ne seront jamais communiquées à des tiers.",
+        opt1: "Consultation découverte", opt2: "Chatbot IA / Service client", opt3: "Marketing & IA de contenu", opt4: "Automatisation de la planification", opt5: "Intégration des systèmes", opt6: "Régie / Support continu", opt7: "Pas encore sûr — discutons",
+        footer_copy: "© 2025 · Francfort-sur-le-Main · Conseil IA & Transformation numérique",
+      }
+    };
+
+    let currentLang = 'en';
+
+    function detectLang() {
+      const bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase().slice(0,2);
+      if (bl === 'de') return 'de';
+      if (bl === 'fr') return 'fr';
+      return 'en';
+    }
+
+    function applyTranslations(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+      document.documentElement.lang = lang;
+      // Update placeholders
+      const nameInput = document.querySelector('#contact input[type="text"]');
+      if (nameInput) nameInput.placeholder = lang === 'de' ? 'Max Mustermann' : lang === 'fr' ? 'Jean Dupont' : 'Max Mustermann';
+      const emailInput = document.querySelector('#contact input[type="email"]');
+      if (emailInput) emailInput.placeholder = lang === 'de' ? 'max@firma.de' : lang === 'fr' ? 'jean@entreprise.fr' : 'max@firma.de';
+      const bizInput = document.getElementById('form_business_input');
+      if (bizInput) bizInput.placeholder = lang === 'de' ? 'z.B. Restaurant, Einzelhandel, Kanzlei' : lang === 'fr' ? 'ex. Restaurant, Commerce, Cabinet' : 'e.g. Restaurant, Retail, Law Firm';
+      const msgInput = document.getElementById('form_message_input');
+      if (msgInput) msgInput.placeholder = lang === 'de' ? 'Erzählen Sie mir etwas über Ihr Unternehmen...' : lang === 'fr' ? 'Parlez-moi un peu de votre activité...' : 'Tell me a little about your business...';
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      applyTranslations(lang);
+    }
+
+    // ─── SCROLL REVEAL ───────────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ─── NAV MOBILE ──────────────────────────────────────────────────────
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // ─── FORM SUBMIT ─────────────────────────────────────────────────────
+    function handleSubmit() {
+      const msgs = { en: "Thank you! I'll be in touch within one business day.", de: "Vielen Dank! Ich melde mich innerhalb eines Werktages.", fr: "Merci ! Je vous répondrai dans un délai d'un jour ouvré." };
+      alert(msgs[currentLang] || msgs.en);
+    }
+
+    // ─── INIT ────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      currentLang = detectLang();
+      applyTranslations(currentLang);
+    });
+  </script>
+</body>
 </html>
