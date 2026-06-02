@@ -37,23 +37,16 @@ export default defineConfig({
       'react/jsx-runtime': 'preact/jsx-runtime'
     }
   },
-  build: {
-    // 1. Increase chunk size warning limit if needed
-    chunkSizeWarningLimit: 600, 
-    rollupOptions: {
-      output: {
-        // 2. Control exactly how code splits into smaller files
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            // Put React and Vue in separate vendor chunks so they cache individually
-            if (id.includes('react')) return 'vendor-react';
-            if (id.includes('vue')) return 'vendor-vue';
-            // Put other libraries into a general vendor chunk
-            return 'vendor-libs';
-          }
-        }
-      }
-    }
-  },
+   build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log'], // Completely deletes standard logs
+      },
+      mangle: true, // Renames functions/variables to single letters
+    },
+  },  
   base: './',
 })
