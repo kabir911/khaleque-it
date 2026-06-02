@@ -115,20 +115,23 @@ export default function ChatWidget() {
 
   // Handler for Google Gemini API Calls
   const callGeminiAPI = async (chatHistory, userMsg) => {
-    const { url } = chatConfig.gemini;
+    const { url, model } = chatConfig.gemini;
     const key = userGeminiKey; 
 
-    const contents = [...chatHistory, userMsg].map(msg => ({
+    const messages = [...chatHistory, userMsg].map(msg => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: msg.content }]
+      content: msg.content
     }));
 
     const response = await fetch(
-      `${url}?key=${key}`,
+      `${url}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents }),
+        body: JSON.stringify({ 
+          model,
+          messages
+        }),
       }
     );
 
@@ -139,8 +142,8 @@ export default function ChatWidget() {
     
     const data = await response.json();
     
-    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-      return data.candidates[0].content.parts[0].text;
+    if (data.choices?.[0]?.message?.content) {
+      return data.choices[0].message.content;
     } else {
       throw new Error("Malformed response structure from Gemini API");
     }
@@ -172,7 +175,7 @@ export default function ChatWidget() {
     }
   };
 
-  const showKeyPrompt = provider === 'gemini' && (!userGeminiKey || isEditingKey);
+  const showKeyPrompt = false;
 
   return (
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999, fontFamily: 'sans-serif' }}>
@@ -216,16 +219,7 @@ export default function ChatWidget() {
 
             {/* Action Buttons (Clear & Close) */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              {/* FIXED/UPDATED: Edit Key Button appears when Gemini is active, a key exists, and we aren't already looking at the key form */}
-              {provider === 'gemini' && userGeminiKey && !isEditingKey && (
-                <button 
-                  onClick={handleEditKeyClick}
-                  title={t("chat.editGeminiKey")}
-                  style={{ background: 'none', border: 'none', color: 'white', fontSize: '13px', cursor: 'pointer', opacity: 0.9, fontWeight: 'bold' }}
-                >
-                  ✏️ Key
-                </button>
-              )}
+              
               {/* Clear Chat Button */}
               {messages.length > 0 && !showKeyPrompt && (
                 <button 

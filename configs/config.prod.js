@@ -29,6 +29,7 @@ export const chatConfig = {
     model: "llama3.1:8b"
   },
   gemini: {
-    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
+    url: "https://mxcsfg3rqluuvsmu.myfritz.net:5010/v1/chat/completions",
+    model: "gemini-2.5-pro"
   }
 };
