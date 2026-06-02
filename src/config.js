@@ -14,7 +14,8 @@ export const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxjAuk
 // The value below is Google's official TEST key — it always passes and shows
 // a "for testing purposes only" banner. Replace it before going live.
 // export const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-export const RECAPTCHA_SITE_KEY = '6LenYwgtAAAAAJa6tnHsjx0L7xHb31_q6K-_gfxx'
+export const RECAPTCHA_SITE_KEY = '6LeyhggtAAAAAG98-BftoQvClaXGfUGGWqouoagi'
+export const RECAPTCHA_SECRET_KEY = '6LeyhggtAAAAANO4JvzFHLCGJH-LZ6h3ufpzgUxW'
 
 // Public contact details shown on the site (safe to display).
 export const CONTACT = {
