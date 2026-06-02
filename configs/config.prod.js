@@ -25,10 +25,10 @@ export const CONTACT = {
 
 export const chatConfig = {
   ollama: {
-    host: "https://evtownhouse.hopto.org:11434",
+    host: "https://mxcsfg3rqluuvsmu.myfritz.net:11434",
     model: "llama3.1:8b"
   },
   gemini: {
-    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest"
+    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
   }
 };
