@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Impressum from './pages/Impressum.jsx'
 import Privacy from './pages/Privacy.jsx'
+import ChatWidget from './components/ChatWidget';
 
 // Scroll to top whenever the route (pathname) changes.
 function ScrollToTop() {
@@ -26,9 +27,10 @@ export default function App() {
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
+        </Routes>        
+      </main>      
       <Footer />
+      <ChatWidget />
     </div>
   )
 }

@@ -18,7 +18,22 @@
     "stat2Value": "Local",
     "stat2Label": "based in Frankfurt am Main",
     "stat3Value": "End-to-end",
-    "stat3Label": "advice, build & ongoing support"
+    "stat3Label": "advice, build & ongoing support"    
+  },
+  "chat": {
+    "title": "Chat with me",
+    "placeholder": "Ask me anything about AI for local business…",
+    "clear": "Are you sure you want to clear this conversation?",
+    "clearhistory": "Clear chat history",
+    "localOllama": "Local Chat Service",
+    "gemini": "Gemini Chat Service",
+    "messageUsingOllama": "Message using Local Chat Service",
+    "messageUsingGemini": "Message using Gemini Chat Service",
+    "saveAndConnect": "Save Key & Connect",
+    "enterApiKey": "Enter your API key to connect to the Gemini Chat Service:",
+    "save": "Save",
+    "geminiKeyRequired": "Gemini API key required",
+    "editGeminiKey": "Edit Gemini API Key"
   },
   "about": {
     "eyebrow": "Who you work with",

@@ -5,6 +5,11 @@ import App from './App.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import './index.css'
 
+const script = document.createElement('script');
+script.type = 'module';
+script.src = 'https://jsdelivr.net';
+document.head.appendChild(script);
+
 // HashRouter is used so deep links (e.g. /#/impressum) work on GitHub Pages
 // without needing server-side rewrite rules.
 ReactDOM.createRoot(document.getElementById('root')).render(

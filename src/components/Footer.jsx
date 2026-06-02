@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useLang } from '../i18n/LanguageContext.jsx'
-import { CONTACT } from '../config.js'
+import { CONTACT } from '../../configs/config.dev.js'
 
 export default function Footer() {
   const { t } = useLang()

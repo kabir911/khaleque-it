@@ -20,6 +20,21 @@
     "stat3Value": "Rundum",
     "stat3Label": "Beratung, Umsetzung & Betreuung"
   },
+  "chat": {
+    "title": "Chat mit mir",
+    "placeholder": "Fragen Sie mich über KI für lokale Unternehmen…",
+    "clear": "Sind Sie sicher, dass Sie diese Unterhaltung löschen möchten?",
+    "clearhistory": "Chat-Verlauf löschen",
+    "localOllama": "Lokaler Chat Service",
+    "gemini": "Gemini Chat Service",
+    "messageUsingOllama": "Nachricht senden mit Local Chat Service",
+    "messageUsingGemini": "Nachricht senden mit Gemini Chat Service",
+    "saveAndConnect": "Speichern & Verbinden",
+    "enterApiKey": "Geben Sie Ihren API-Schlüssel ein",
+    "save": "Speichern",
+    "geminiKeyRequired": "Gemini API-Schlüssel erforderlich",
+    "editGeminiKey": "Gemini API-Schlüssel bearbeiten"
+  },
   "about": {
     "eyebrow": "Mit wem Sie arbeiten",
     "title": "Drei Jahrzehnte Enterprise-IT, ganz auf Ihr Geschäft fokussiert",

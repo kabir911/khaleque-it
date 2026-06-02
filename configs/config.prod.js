@@ -22,3 +22,13 @@ export const CONTACT = {
   phone: '+49 (0) 172 682 4586',
   city: 'Frankfurt am Main, Germany',
 }
+
+export const chatConfig = {
+  ollama: {
+    host: "https://evtownhouse.hopto.org:11434",
+    model: "llama3.1:8b"
+  },
+  gemini: {
+    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest"
+  }
+};

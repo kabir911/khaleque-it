@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "predeploy": "shx cp configs/config.prod.js public/config.js && npm run build",
+    "predeploy:dev": "shx cp configs/config.dev.js public/config.js && npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
@@ -17,9 +19,11 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-vue": "^6.0.7",
     "autoprefixer": "^10.4.20",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.47",
+    "shx": "^0.4.0",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.8"
   }
