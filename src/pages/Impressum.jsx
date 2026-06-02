@@ -5,41 +5,39 @@ export default function Impressum() {
   const { t } = useLang()
 
   return (
-    <LegalLayout title={t('impressum.title')} showPlaceholderBanner>
+    <LegalLayout title={t('impressum.title')} showPlaceholderBanner={false}>
       <p>{t('impressum.intro')}</p>
 
       <LegalSection heading={t('impressum.providerHeading')}>
         <p>
-          [FULL NAME]
+          Kabir Nazmul Khaleque
           <br />
           Khaleque IT Consulting
           <br />
-          [STREET &amp; HOUSE NUMBER]
+          60594 Frankfurt am Main
           <br />
-          [POSTAL CODE] Frankfurt am Main
-          <br />
-          [COUNTRY: Germany]
+          Germany
         </p>
       </LegalSection>
 
       <LegalSection heading={t('impressum.contactHeading')}>
         <p>
-          {t('contact.phone')}: [PHONE NUMBER]
+          {t('contact.phone')}: +49 (0) 172 682 4586
           <br />
-          {t('contact.email')}: [EMAIL ADDRESS]
+          {t('contact.email')}: support@divm.com
         </p>
       </LegalSection>
 
       <LegalSection heading={t('impressum.vatHeading')}>
         <p>{t('impressum.vatBody')}</p>
-        <p>[USt-IdNr.: DE XXXXXXXXX]</p>
+        <p>USt-IdNr.: DE 189948397</p>
       </LegalSection>
 
       <LegalSection heading={t('impressum.responsibleHeading')}>
         <p>
-          [FULL NAME]
+          Kabir Nazmul Khaleque
           <br />
-          [STREET &amp; HOUSE NUMBER], [POSTAL CODE] Frankfurt am Main
+          60594 Frankfurt am Main
         </p>
       </LegalSection>
 

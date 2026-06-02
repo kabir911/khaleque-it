@@ -15,7 +15,7 @@ export default function Privacy() {
   ]
 
   return (
-    <LegalLayout title={t('privacy.title')} showPlaceholderBanner>
+    <LegalLayout title={t('privacy.title')} showPlaceholderBanner={false}>
       <p>{t('privacy.intro')}</p>
       {sections.map(([h, b]) => (
         <LegalSection key={h} heading={t(`privacy.${h}`)}>
