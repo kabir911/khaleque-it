@@ -25,7 +25,7 @@ export const CONTACT = {
 
 export const chatConfig = {
   ollama: {
-    host: "https://evtownhouse.hopto.org:11434",
+    host: "https://mxcsfg3rqluuvsmu.myfritz.net:11434",
     model: "llama3.1:8b"
   },
   gemini: {
