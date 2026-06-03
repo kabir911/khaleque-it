@@ -179,7 +179,7 @@ export default function ChatWidget() {
   const showKeyPrompt = false;
 
   return (
-    <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999, fontFamily: 'sans-serif' }}>
+    <div style={{ position: 'fixed', bottom: '40px', left: '20px', right: 'auto', zIndex: 9999, fontFamily: 'sans-serif' }}>
       {/* Floating Toggle Button */}
       {!isOpen && (
         <button 

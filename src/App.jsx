@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import Impressum from './pages/Impressum.jsx'
 import Privacy from './pages/Privacy.jsx'
 import ChatWidget from './components/ChatWidget';
+import ElevenLabsWidget from './components/ElevenLabsWidget.jsx'
 
 // Scroll to top whenever the route (pathname) changes.
 function ScrollToTop() {
@@ -17,7 +18,7 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  return (
+   return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
       <Navbar />
@@ -30,7 +31,8 @@ export default function App() {
         </Routes>        
       </main>      
       <Footer />
-      <ChatWidget />
+      <ElevenLabsWidget />
+      <ChatWidget />      
     </div>
   )
 }
