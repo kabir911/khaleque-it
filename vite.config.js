@@ -22,11 +22,11 @@ export default defineConfig({
         }
       }
     }),
-//    visualizer({
-//      open: true, // Automatically opens the browser report after building
-//      filename: 'bundle-analysis.html',
-//      gzipSize: true,
-//    brotliSize: true,})
+  //    visualizer({
+  //      open: true, // Automatically opens the browser report after building
+  //      filename: 'bundle-analysis.html',
+  //      gzipSize: true,
+  //    brotliSize: true,})
   ],
   resolve: {
     alias: {
@@ -36,8 +36,8 @@ export default defineConfig({
       'react-dom': 'preact/compat',
       'react/jsx-runtime': 'preact/jsx-runtime'
     }
-  },
-   build: {
+  },   
+  build: {
     minify: 'terser',
     terserOptions: {
       compress: {
@@ -45,7 +45,7 @@ export default defineConfig({
         drop_debugger: true,
         pure_funcs: ['console.log'], // Completely deletes standard logs
       },
-      mangle: true, // Renames functions/variables to single letters
+      mangle: true, // Renames functions/variables to single letters      
     },
   },  
   base: './',
