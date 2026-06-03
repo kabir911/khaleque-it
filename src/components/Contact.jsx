@@ -112,12 +112,13 @@ export default function Contact() {
       // POST with no-cors. We can't read the response, but the row is written.
       await fetch(GOOGLE_SHEETS_URL, { method: 'POST', mode: 'no-cors', body })
       setStatus('success')
-      form.reset()
-      window.grecaptcha?.reset(widgetId.current)
+      form.reset()      
+      window.grecaptcha?.reset(widgetId.current)            
+      console.log('Contact form submitted', body);
     } catch (_) {
       setStatus('error')
-      setErrorMsg(t('contact.errorGeneric'))
-      window.grecaptcha?.reset(widgetId.current)
+      setErrorMsg(t('contact.errorGeneric'))      
+      window.grecaptcha?.reset(widgetId.current)      
     }
   }
 
