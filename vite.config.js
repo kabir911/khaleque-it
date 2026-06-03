@@ -13,7 +13,7 @@ import progress from 'vite-plugin-progress';
 export default defineConfig({
   plugins: [
     progress(),
-    react(),
+    react(),    
     vue({
       template: {
         compilerOptions: {
