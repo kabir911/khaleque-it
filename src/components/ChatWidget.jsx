@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 // Import the configuration block from your project's shared config file
-import { chatConfig } from '../../configs/config.dev.js'; // Adjust relative path as needed
 import { useLang } from '../i18n/LanguageContext.jsx'
 
 export default function ChatWidget() {
@@ -10,6 +9,8 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [provider, setProvider] = useState('ollama'); 
+
+  const CHAT_CONFIG = JSON.parse(import.meta.env.VITE_CHATCONFIG);
 
     // Track the user-provided Gemini API key
   const [userGeminiKey, setUserGeminiKey] = useState('');
@@ -96,7 +97,7 @@ export default function ChatWidget() {
 
   // Handler for Local Ollama API Calls
   const callOllamaAPI = async (chatHistory, userMsg) => {
-    const { host, model } = chatConfig.ollama;
+    const { host, model } = CHAT_CONFIG.ollama;
     
     const response = await fetch(`${host}/api/chat`, {
       method: 'POST',
@@ -115,7 +116,7 @@ export default function ChatWidget() {
 
   // Handler for Google Gemini API Calls
   const callGeminiAPI = async (chatHistory, userMsg) => {
-    const { url, model } = chatConfig.gemini;
+    const { url, model } = CHAT_CONFIG.gemini;
     const key = userGeminiKey; 
 
     const messages = [...chatHistory, userMsg].map(msg => ({

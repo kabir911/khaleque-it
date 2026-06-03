@@ -1,12 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useLang } from '../i18n/LanguageContext.jsx'
-import { CONTACT } from '../../configs/config.dev.js'
 
 export default function Footer() {
   const { t } = useLang()
   const navigate = useNavigate()
   const location = useLocation()
   const year = new Date().getFullYear()
+
+  const CONTACT = JSON.parse(import.meta.env.VITE_CONTACT);
 
   const goToSection = (id) => {
     const scroll = () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })

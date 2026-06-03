@@ -8,11 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "shx cp configs/config.prod.js public/config.js && npm run build",
-    "predeploy:dev": "shx cp configs/config.dev.js public/config.js && npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@elevenlabs/react": "^1.6.4",
     "preact": "^10.29.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

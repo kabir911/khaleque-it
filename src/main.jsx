@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import App from './App.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
+import { ConversationProvider } from '@elevenlabs/react'
 import './index.css'
 
 const script = document.createElement('script');
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LanguageProvider>
       <HashRouter>
-        <App />
+        <ConversationProvider>
+          <App />
+        </ConversationProvider>
       </HashRouter>
     </LanguageProvider>
   </React.StrictMode>,

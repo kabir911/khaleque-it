@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
-import { GOOGLE_SHEETS_URL, RECAPTCHA_SITE_KEY, CONTACT } from '../../configs/config.dev.js'
+
+const CONTACT = JSON.parse(import.meta.env.VITE_CONTACT);
+const GOOGLE_SHEETS_URL = import.meta.env.VITE_GOOGLE_SHEETS_URL;
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 // Load the reCAPTCHA script once and resolve when grecaptcha is ready.
 let recaptchaPromise = null
