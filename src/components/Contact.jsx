@@ -106,15 +106,12 @@ export default function Contact() {
     }
 
     try {
-      const body = new FormData()
-      Object.entries(data).forEach(([k, v]) => body.append(k, v))
       // Google Apps Script web apps typically don't return CORS headers, so we
       // POST with no-cors. We can't read the response, but the row is written.
-      await fetch(GOOGLE_SHEETS_URL, { method: 'POST', mode: 'no-cors', body })
+      await fetch(GOOGLE_SHEETS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
       setStatus('success')
       form.reset()      
-      window.grecaptcha?.reset(widgetId.current)            
-      console.log('Contact form submitted', body);
+      window.grecaptcha?.reset(widgetId.current)                
     } catch (_) {
       setStatus('error')
       setErrorMsg(t('contact.errorGeneric'))      
