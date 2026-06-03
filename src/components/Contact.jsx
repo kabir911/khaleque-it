@@ -142,6 +142,7 @@ export default function Contact() {
               </a>
             </p>
             <p>{CONTACT.phone}</p>
+            <p>{CONTACT.sphone}</p>
             <p>{CONTACT.city}</p>
           </div>
         </div>
