@@ -138,7 +138,8 @@ const styles = {
     bottom: '80px', // Sits right above the button
     left: '50%',
     transform: 'translateX(-50%)',
-    width: '350px',
+    minWidth: '300px',
+    width: '50vw',
     maxHeight: '500px',
     backgroundColor: '#fff',
     borderRadius: '12px',
