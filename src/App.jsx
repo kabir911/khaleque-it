@@ -8,6 +8,36 @@ import Privacy from './pages/Privacy.jsx'
 import ChatWidget from './components/ChatWidget';
 import ElevenLabsWidget from './components/ElevenLabsWidget.jsx'
 
+// Inject avatar chat button styles and animations
+const injectAvatarStyles = () => {
+  const styleId = "avatar-chat-button-styles";
+  if (!document.getElementById(styleId)) {
+    const styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    styleTag.innerText = `
+      @keyframes pulse-glow {
+        0%, 100% { 
+          box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+          transform: translateX(-50%) scale(1);
+        }
+        50% { 
+          box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+          transform: translateX(-50%) scale(1.05);
+        }
+      }
+      .avatar-chat-button {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+      .avatar-chat-button:hover {
+        background-color: #0056b3 !important;
+        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.6) !important;
+        transform: translateX(-50%) scale(1.1) !important;
+      }
+    `;
+    document.head.appendChild(styleTag);
+  }
+};
+
 // Scroll to top whenever the route (pathname) changes.
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -19,6 +49,12 @@ function ScrollToTop() {
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // Inject avatar chat button styles on mount
+  useEffect(() => {
+    injectAvatarStyles();
+  }, []);
+  
    return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
@@ -37,7 +73,29 @@ export default function App() {
       <button 
         onClick={() => setIsOpen(!isOpen)} 
         style={styles.floatingButton}
-      ></button>
+        className="avatar-chat-button"
+        title="Chat with AI Avatar"
+      >
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          {/* Avatar head */}
+          <circle cx="12" cy="8" r="4" />
+          {/* Avatar body/chat bubble */}
+          <path d="M 6 18 Q 6 14 12 14 Q 18 14 18 18 L 18 20 Q 18 22 16 22 L 8 22 Q 6 22 6 20 Z" />
+          {/* Chat indicator dots */}
+          <circle cx="10" cy="18" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+          <circle cx="14" cy="18" r="1.5" fill="currentColor" />
+        </svg>
+      </button>
       {isOpen && (
         <div style={styles.iframeContainer}>
           <iframe src="https://embed.liveavatar.com/v1/06dd7551-b9b6-40a9-b877-f630f1f32962?orientation=horizontal" allow="microphone" title="LiveAvatar Embed" style="aspect-ratio: 16/9;"></iframe>          
@@ -60,14 +118,20 @@ const styles = {
     left: '50%',
     transform: 'translateX(-50%)',
     zIndex: 1000,
-    padding: '12px 24px',
+    width: '56px',
+    height: '56px',
+    padding: '0',
     backgroundColor: '#007bff',
     color: '#fff',
     border: 'none',
-    borderRadius: '24px',
+    borderRadius: '50%',
     cursor: 'pointer',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+    boxShadow: '0 4px 12px rgba(0, 123, 255, 0.3)',
     fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'all 0.3s ease',
   },
   iframeContainer: {
     position: 'fixed',
