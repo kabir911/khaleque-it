@@ -192,7 +192,7 @@ export default function ChatWidget() {
 
       {/* Chat Window Frame */}
       {isOpen && (
-        <div style={{ width: '350px', height: '480px', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 5px 25px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid #eee' }}>
+        <div style={{ width: '50vw', height: '480px', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 5px 25px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid #eee' }}>
           
           {/* Header Bar */}
           <div style={{ backgroundColor: '#007bff', color: 'white', padding: '10px 15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
