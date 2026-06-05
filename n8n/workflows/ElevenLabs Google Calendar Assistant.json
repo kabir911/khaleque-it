@@ -1,0 +1,273 @@
+{
+  "name": "ElevenLabs Google Calendar Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elevenlabs-booking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -784,
+        -144
+      ],
+      "id": "2d74c115-389d-4fce-99bd-90d34bc4c714",
+      "name": "Webhook",
+      "webhookId": "f5bc2932-9c44-421f-924d-332609dfed07"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "check-action",
+              "leftValue": "={{ $json.body.action }}",
+              "rightValue": "check",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinATOR": "and",
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -144
+      ],
+      "id": "652e633e-a34d-4f93-9c3f-6448f4a92c36",
+      "name": "If Check Action"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list"
+        },
+        "returnAll": true,
+        "options": {
+          "timeMin": "={{ $json.body.date }}T00:00:00Z",
+          "timeMax": "={{ $json.body.date }}T23:59:59Z",
+          "singleEvents": true
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -240
+      ],
+      "id": "21039d75-8659-4ddf-a3a5-a7f92e95cc1b",
+      "name": "Google Calendar - Get Events",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        -240
+      ],
+      "id": "b8344ddc-cfb9-46a4-a4d4-5bfc4241117c",
+      "name": "Calculate Free Slots"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "start": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "end": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).plus({ minutes: 30 }).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "additionalFields": {
+          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }}",
+          "summary": "=  IT Consultation - {{ $json.body.name }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -16
+      ],
+      "id": "4e4b4963-f5af-4273-a741-53241da76acf",
+      "name": "Google Calendar - Create Event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -16
+      ],
+      "id": "8d9df8b5-780f-43fa-8d24-f019ccc73b10",
+      "name": "Respond Success"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        112,
+        -240
+      ],
+      "id": "2296e45b-3727-42cc-9c7b-93c932826790",
+      "name": "Respond Slots"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "mxcsfg3rqluuvsmu.myfritz.net:5679",
+            "x-real-ip": "172.19.0.1",
+            "x-forwarded-for": "172.19.0.1",
+            "x-forwarded-proto": "https",
+            "x-forwarded-host": "mxcsfg3rqluuvsmu.myfritz.net:5679",
+            "connection": "upgrade",
+            "content-length": "115",
+            "user-agent": "curl/8.15.0",
+            "accept": "*/*",
+            "content-type": "application/json"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "action": "book",
+            "date": "2026-06-05",
+            "time": "14:00",
+            "name": "Max Mustermann",
+            "phone": "+491701234567"
+          },
+          "webhookUrl": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If Check Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check Action": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar - Get Events",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Calendar - Create Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar - Get Events": {
+      "main": [
+        [
+          {
+            "node": "Calculate Free Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Free Slots": {
+      "main": [
+        [
+          {
+            "node": "Respond Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar - Create Event": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "8875b40e-bc5f-4fe5-a7e7-88b85c132ba6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3ea6496d728c98b23597b446bd009c2394751dfb58d237e69346212a0717cf14"
+  },
+  "nodeGroups": [],
+  "id": "8Ieozue3TRCq9qIA",
+  "tags": []
+}
