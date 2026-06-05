@@ -1,0 +1,807 @@
+{
+  "agent_id": "agent_3101kt618rfre5zstq1ty2hw16dm",
+  "name": "khaleque-answering-machine",
+  "conversation_config": {
+    "asr": {
+      "quality": "high",
+      "provider": "scribe_realtime",
+      "user_input_audio_format": "pcm_24000",
+      "keywords": []
+    },
+    "turn": {
+      "turn_timeout": 7,
+      "initial_wait_time": null,
+      "silence_end_call_timeout": -1,
+      "mode": "turn",
+      "turn_eagerness": "normal",
+      "spelling_patience": "auto",
+      "speculative_turn": true,
+      "retranscribe_on_turn_timeout": false,
+      "turn_model": "turn_v2",
+      "interruption_ignore_terms": [],
+      "soft_timeout_config": {
+        "timeout_seconds": -1,
+        "message": "Hhmmmm...yeah.",
+        "use_llm_generated_message": false,
+        "llm_generated_message_prompt_override": null
+      }
+    },
+    "tts": {
+      "model_id": "eleven_v3_conversational",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "supported_voices": [],
+      "expressive_mode": true,
+      "suggested_audio_tags": [],
+      "agent_output_audio_format": "pcm_24000",
+      "optimize_streaming_latency": 3,
+      "stability": 0.5,
+      "speed": 1,
+      "similarity_boost": 0.8,
+      "text_normalisation_type": "system_prompt",
+      "pronunciation_dictionary_locators": []
+    },
+    "conversation": {
+      "text_only": false,
+      "max_duration_seconds": 600,
+      "client_events": [
+        "audio",
+        "interruption",
+        "agent_response",
+        "user_transcript",
+        "agent_response_correction",
+        "agent_tool_response"
+      ],
+      "file_input": {
+        "enabled": true,
+        "max_files_per_conversation": 10
+      },
+      "monitoring_enabled": false,
+      "monitoring_events": [
+        "user_transcript",
+        "agent_response",
+        "agent_response_correction"
+      ],
+      "dtmf_input_settings": null,
+      "background_music": {
+        "source_type": null,
+        "source_id": null,
+        "volume": 0.6,
+        "crossfade_loop": false
+      },
+      "source_attribution": false
+    },
+    "language_presets": {
+      "en": {
+        "overrides": {
+          "asr": null,
+          "turn": null,
+          "tts": null,
+          "conversation": null,
+          "agent": {
+            "first_message": "[warmly] Hello, thank you for calling KKhaleque IT Consulting. My name is Lena, and I'm here to help local businesses in the Frankfurt am Main area explore how practical AI can boost their success. How can I assist you today?",
+            "language": null,
+            "max_conversation_duration_message": null,
+            "prompt": null
+          }
+        },
+        "first_message_translation": {
+          "source_hash": "{\"firstMessage\":\"[warmly] Hello, thank you for calling KKhaleque IT Consulting. My name is Lena, and I'm here to help local businesses in the Frankfurt am Main area explore how practical AI can boost their success. How can I assist you today?\",\"language\":\"de\"}",
+          "text": "[warmly] Hello, thank you for calling KKhaleque IT Consulting. My name is Lena, and I'm here to help local businesses in the Frankfurt am Main area explore how practical AI can boost their success. How can I assist you today?"
+        },
+        "soft_timeout_translation": null
+      }
+    },
+    "vad": {
+      "background_voice_detection": false
+    },
+    "agent": {
+      "first_message": "[warmly] Hello, thank you for calling KKhaleque IT Consulting. My name is Eric, and I am an AI assistant to help local businesses in the Frankfurt am Main area explore how practical AI can boost their success. How can I assist you today?",
+      "language": "de",
+      "hinglish_mode": false,
+      "dynamic_variables": {
+        "dynamic_variable_placeholders": {}
+      },
+      "disable_first_message_interruptions": false,
+      "max_conversation_duration_message": "",
+      "text_behavior_overrides": null,
+      "prompt": {
+        "prompt": "### Personality\nYou are a professional and helpful virtual assistant for KKhaleque IT Consulting, based in Frankfurt am Main, Germany.\nYou represent a company that provides practical AI and IT consulting services to local businesses in the Frankfurt Rhine-Main region, focusing on growing revenue and cutting costs without hype or a big IT department.\nYou are knowledgeable about our services, which include automated customer service, intelligent answering, marketing content generation, AI graphic design, automated scheduling, meeting notes, workflow automation, local SEO, data insights, and secure AI adoption.\nYou are friendly, efficient, and reassuring, always aiming to understand the caller's needs while highlighting the value of a discovery call.\n\n### Environment\nYou are handling inbound phone calls from potential clients who are local business owners in the Frankfurt am Main area.\nThe caller is interested in leveraging AI for their business and is looking to understand how KKhaleque IT Consulting can help.\nYou have access to information about our services and the process for scheduling a free 30-minute discovery call.\nThe conversation should be focused on qualifying the lead and scheduling this initial consultation.\n\n### Tone\nYour responses are professional, friendly, and clear, typically keeping explanations concise and to the point.\nYou speak with a confident and reassuring tone, using natural conversational elements like \"I see\" or \"Absolutely\" and appropriate pauses to sound authentic.\nYou adapt your language to the caller's technical understanding, avoiding jargon where possible or explaining it simply.\nYou periodically check for understanding and ensure the caller feels heard and valued.\nYou optimize your speech for natural text-to-speech delivery, using strategic pauses (marked by \"...\") and emphasis on key information.\nWhen providing contact details or times, you will speak them clearly, for example, reading phone numbers with pauses between segments.\n\n### Goal\nYour primary goal is to identify the caller's AI needs and successfully schedule a free 30-minute discovery call (either in-person or via video call) with KKhaleque IT Consulting.\n\n1.  **Initial Qualification:**\n    -   Warmly greet the caller and confirm they've reached KKhaleque IT Consulting.\n    -   Briefly explain KKhaleque IT Consulting's focus on practical AI for local Frankfurt businesses.\n    -   Identify the caller's primary area of interest or specific AI need (e.g., customer service, marketing, automation).\n    -   Confirm the caller represents a local business in the Frankfurt am Main region.\n\n2.  **Value Proposition & Discovery Call Explanation:**\n    -   Briefly explain how KKhaleque IT Consulting helps businesses (e.g., 35+ years experience, no jargon, focus on measurable results).\n    -   Introduce the free 30-minute discovery call as the next step to understand their business, identify opportunities, and create a plain-language plan.\n    -   Explain that the call can be in-person or via video, based on their preference.\n\n3.  **Scheduling the Discovery Call:**\n    -   Offer to schedule the discovery call immediately.\n    -   Collect the caller's full name, business name, email address, and phone number.\n    -   Ask for their preferred meeting type (in-person or video call).\n    -   Propose available dates and times for the 30-minute call use the tool get_calendar_bookings to get the appointments for the given date.\n    -   Confirm all appointment details (date, time, type, and contact information).\n    -   Call the tool add_calendar_booking to add the appointment for the given date.\n    -   When calling add_calendar_booking, wait for the tool output. Once the tool returns a video_call_link, inform the user that a Google Meet link has been successfully generated and will be sent to their email address.\n\n4.  **Confirmation & Next Steps:**\n    -   Provide a brief confirmation of the scheduled call and what to expect.\n    -   Thank the caller for their interest.\n\nIf the caller attempts to get free consulting during this call, politely redirect them to the discovery call as the appropriate forum for detailed discussions. If they are not a local business in the Frankfurt am Main area, politely explain the service area focus and offer to answer general questions if possible, but prioritize local clients for discovery calls.\n\nSuccess is measured by the successful scheduling of a qualified discovery call and the collection of accurate contact information.\n\n### Guardrails\n-   Never provide specific technical advice, solutions, or detailed project quotes during this initial call; always direct these inquiries to the discovery call.\n-   Do not discuss pricing beyond the mention of the free 30-minute discovery call.\n-   Maintain a professional and helpful demeanor, even if the caller is demanding or unclear.\n-   If a caller is outside the Frankfurt am Main service area, politely explain our local focus and suggest they still book a video call if they are interested, or decline if it's a clear mismatch.\n-   Do not speculate or invent information if you don't know the answer; instead, state that the consultant will address it during the discovery call.\n-   Ensure all collected information is directly relevant to scheduling the discovery call and respect privacy.\n-   Do not engage in discussions about competitors or provide opinions on other service providers.",
+        "llm": "gemini-2.5-flash",
+        "reasoning_effort": null,
+        "thinking_budget": null,
+        "temperature": 0,
+        "max_tokens": -1,
+        "tool_ids": [
+          "tool_8801ktb397fse828axevsrq5e7k2",
+          "tool_7801ktb2q7qze3msf918d65t7w6e"
+        ],
+        "built_in_tools": {
+          "end_call": {
+            "type": "system",
+            "name": "end_call",
+            "description": "",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "params": {
+              "system_tool_type": "end_call"
+            }
+          },
+          "language_detection": {
+            "type": "system",
+            "name": "language_detection",
+            "description": "",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "params": {
+              "system_tool_type": "language_detection"
+            }
+          },
+          "transfer_to_agent": null,
+          "transfer_to_number": null,
+          "skip_turn": null,
+          "play_keypad_touch_tone": null,
+          "voicemail_detection": null,
+          "update_state": null,
+          "memory_entry_search": null,
+          "memory_entry_create": null,
+          "memory_entry_update": null,
+          "memory_entry_delete": null,
+          "agent_prompt_change": null,
+          "procedure_update": null,
+          "transfer_to_genesys_chat": null
+        },
+        "enable_parallel_tool_calls": false,
+        "mcp_server_ids": [],
+        "native_mcp_server_ids": [],
+        "knowledge_base": [],
+        "custom_llm": null,
+        "speech_engine": null,
+        "ignore_default_personality": false,
+        "rag": {
+          "enabled": false,
+          "embedding_model": "e5_mistral_7b_instruct",
+          "optional_rag_enabled": false,
+          "max_vector_distance": 0.6,
+          "max_documents_length": 50000,
+          "max_retrieved_rag_chunks_count": 20,
+          "num_candidates": null,
+          "query_rewrite_prompt_override": null
+        },
+        "timezone": "Europe/Berlin",
+        "backup_llm_config": {
+          "preference": "default"
+        },
+        "cascade_timeout_seconds": 8,
+        "tools": [
+          {
+            "type": "webhook",
+            "name": "add_calender_booking",
+            "description": "This tool will add a calender booking",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "immediate",
+            "api_schema": {
+              "request_headers": {},
+              "url": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
+              "method": "POST",
+              "path_params_schema": {},
+              "query_params_schema": null,
+              "request_body_schema": {
+                "type": "object",
+                "required": [
+                  "action",
+                  "date",
+                  "time",
+                  "name",
+                  "phone"
+                ],
+                "description": "The parameters required for the webhook call in order to add a calendar entry",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "description": "",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "book",
+                    "is_omitted": false
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "The date for the appointment using the format YYYY-MM-DD",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  },
+                  "time": {
+                    "type": "string",
+                    "description": "The time for the appointment using the format HH:MM",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the person making the appointment",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "The phone number of the person making the appointment",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email of the person making the appointment",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  }
+                }
+              },
+              "response_body_schema": null,
+              "content_type": "application/json",
+              "auth_resolved_params": [],
+              "auth_connection": null
+            }
+          },
+          {
+            "type": "webhook",
+            "name": "get_calendar_bookings",
+            "description": "This tool will retrieve the calendar entries for a given date.",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "async",
+            "api_schema": {
+              "request_headers": {},
+              "url": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
+              "method": "POST",
+              "path_params_schema": {},
+              "query_params_schema": null,
+              "request_body_schema": {
+                "type": "object",
+                "required": [
+                  "action",
+                  "date"
+                ],
+                "description": "The parameters required for the webhook call in order to retrieve the calendar entries for a given date",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "description": "",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "check",
+                    "is_omitted": false
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "The date using the format YYYY-MM-DD that should be used for retrieving the appointments",
+                    "enum": null,
+                    "is_system_provided": false,
+                    "dynamic_variable": "",
+                    "constant_value": "",
+                    "is_omitted": false
+                  }
+                }
+              },
+              "response_body_schema": null,
+              "content_type": "application/json",
+              "auth_resolved_params": [],
+              "auth_connection": null
+            }
+          },
+          {
+            "type": "system",
+            "name": "end_call",
+            "description": "",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "params": {
+              "system_tool_type": "end_call"
+            }
+          },
+          {
+            "type": "system",
+            "name": "language_detection",
+            "description": "",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "params": {
+              "system_tool_type": "language_detection"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "created_at_unix_secs": 1780466608,
+    "updated_at_unix_secs": 1780637966
+  },
+  "platform_settings": {
+    "evaluation": {
+      "criteria": [
+        {
+          "id": "discovery_call_scheduled",
+          "name": "Discovery Call Scheduled",
+          "type": "prompt",
+          "conversation_goal_prompt": "Did the agent successfully schedule a free 30-minute discovery call?",
+          "use_knowledge_base": false,
+          "scope": "conversation",
+          "llm": null
+        },
+        {
+          "id": "client_interest_identified",
+          "name": "Client Interest Identified",
+          "type": "prompt",
+          "conversation_goal_prompt": "Did the agent identify the client's primary AI need or area of interest?",
+          "use_knowledge_base": false,
+          "scope": "conversation",
+          "llm": null
+        },
+        {
+          "id": "geographic_eligibility_confirmed",
+          "name": "Geographic Eligibility Confirmed",
+          "type": "prompt",
+          "conversation_goal_prompt": "Did the agent confirm the client represents a local business in the Frankfurt am Main region?",
+          "use_knowledge_base": false,
+          "scope": "conversation",
+          "llm": null
+        },
+        {
+          "id": "contact_info_collected",
+          "name": "Contact Information Collected",
+          "type": "prompt",
+          "conversation_goal_prompt": "Did the agent collect the client's name, business name, email, and phone number for the discovery call?",
+          "use_knowledge_base": false,
+          "scope": "conversation",
+          "llm": null
+        }
+      ]
+    },
+    "widget": {
+      "variant": "full",
+      "placement": "bottom-right",
+      "expandable": "never",
+      "avatar": {
+        "type": "orb",
+        "color_1": "#2792dc",
+        "color_2": "#9ce6e6"
+      },
+      "feedback_mode": "none",
+      "end_feedback": {
+        "type": "rating"
+      },
+      "bg_color": "#ffffff",
+      "text_color": "#000000",
+      "btn_color": "#000000",
+      "btn_text_color": "#ffffff",
+      "border_color": "#e1e1e1",
+      "focus_color": "#000000",
+      "border_radius": null,
+      "btn_radius": null,
+      "action_text": null,
+      "start_call_text": null,
+      "end_call_text": null,
+      "expand_text": null,
+      "listening_text": null,
+      "speaking_text": null,
+      "shareable_page_text": null,
+      "shareable_page_show_terms": true,
+      "terms_text": null,
+      "terms_html": null,
+      "terms_key": null,
+      "show_avatar_when_collapsed": false,
+      "disable_banner": false,
+      "override_link": null,
+      "markdown_link_allowed_hosts": [
+        {
+          "hostname": "khaleque-it.com"
+        }
+      ],
+      "markdown_link_include_www": true,
+      "markdown_link_allow_http": true,
+      "mic_muting_enabled": false,
+      "transcript_enabled": false,
+      "text_input_enabled": true,
+      "conversation_mode_toggle_enabled": false,
+      "default_expanded": false,
+      "always_expanded": false,
+      "dismissible": false,
+      "show_agent_status": false,
+      "show_conversation_id": true,
+      "strip_audio_tags": true,
+      "syntax_highlight_theme": null,
+      "text_contents": {
+        "main_label": null,
+        "start_call": null,
+        "start_chat": null,
+        "new_call": null,
+        "end_call": null,
+        "mute_microphone": null,
+        "change_language": null,
+        "collapse": null,
+        "expand": null,
+        "copied": null,
+        "accept_terms": null,
+        "dismiss_terms": null,
+        "listening_status": null,
+        "speaking_status": null,
+        "connecting_status": null,
+        "chatting_status": null,
+        "input_label": null,
+        "input_placeholder": null,
+        "input_placeholder_text_only": null,
+        "input_placeholder_new_conversation": null,
+        "user_ended_conversation": null,
+        "agent_ended_conversation": null,
+        "conversation_id": null,
+        "error_occurred": null,
+        "copy_id": null,
+        "initiate_feedback": null,
+        "request_follow_up_feedback": null,
+        "thanks_for_feedback": null,
+        "thanks_for_feedback_details": null,
+        "follow_up_feedback_placeholder": null,
+        "submit": null,
+        "go_back": null,
+        "send_message": null,
+        "text_mode": null,
+        "voice_mode": null,
+        "switched_to_text_mode": null,
+        "switched_to_voice_mode": null,
+        "copy": null,
+        "download": null,
+        "wrap": null,
+        "agent_working": null,
+        "agent_done": null,
+        "agent_error": null
+      },
+      "styles": {
+        "base": null,
+        "base_hover": null,
+        "base_active": null,
+        "base_border": null,
+        "base_subtle": null,
+        "base_primary": null,
+        "base_error": null,
+        "accent": null,
+        "accent_hover": null,
+        "accent_active": null,
+        "accent_border": null,
+        "accent_subtle": null,
+        "accent_primary": null,
+        "overlay_padding": null,
+        "button_radius": null,
+        "input_radius": null,
+        "bubble_radius": null,
+        "sheet_radius": null,
+        "compact_sheet_radius": null,
+        "dropdown_sheet_radius": null
+      },
+      "language_selector": true,
+      "supports_text_only": true,
+      "custom_avatar_path": null,
+      "language_presets": {}
+    },
+    "data_collection": {
+      "client_full_name": {
+        "type": "string",
+        "description": "The full name of the potential client.",
+        "enum": null,
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      },
+      "client_business_name": {
+        "type": "string",
+        "description": "The name of the client's business.",
+        "enum": null,
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      },
+      "client_email": {
+        "type": "string",
+        "description": "The email address of the potential client.",
+        "enum": null,
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      },
+      "client_phone_number": {
+        "type": "string",
+        "description": "The phone number of the potential client.",
+        "enum": null,
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      },
+      "discovery_call_type": {
+        "type": "string",
+        "description": "The preferred type of discovery call (in-person or video call).",
+        "enum": [
+          "in-person",
+          "video call"
+        ],
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      },
+      "discovery_call_scheduled": {
+        "type": "boolean",
+        "description": "Whether a discovery call was successfully scheduled.",
+        "enum": null,
+        "is_system_provided": false,
+        "dynamic_variable": "",
+        "constant_value": "",
+        "is_omitted": false,
+        "llm": null
+      }
+    },
+    "data_collection_scopes": {},
+    "overrides": {
+      "conversation_config_override": {
+        "asr": {
+          "keywords": false
+        },
+        "turn": {
+          "soft_timeout_config": {
+            "message": false
+          }
+        },
+        "tts": {
+          "voice_id": false,
+          "stability": false,
+          "speed": false,
+          "similarity_boost": false
+        },
+        "conversation": {
+          "text_only": true
+        },
+        "agent": {
+          "first_message": false,
+          "language": true,
+          "max_conversation_duration_message": false,
+          "prompt": {
+            "prompt": false,
+            "llm": false,
+            "tool_ids": false,
+            "native_mcp_server_ids": false,
+            "knowledge_base": false
+          }
+        }
+      },
+      "custom_llm_extra_body": false,
+      "enable_conversation_initiation_client_data_from_webhook": false,
+      "enable_starting_workflow_node_id_from_client": false
+    },
+    "workspace_overrides": {
+      "conversation_initiation_client_data_webhook": null,
+      "webhooks": {
+        "post_call_webhook_id": null,
+        "events": [
+          "transcript"
+        ],
+        "transcript_format": "json",
+        "send_audio": false
+      }
+    },
+    "testing": {
+      "attached_tests": [
+        {
+          "test_id": "test_9201kt618rcsfrj8vwe7pw2d773n",
+          "workflow_node_id": null
+        },
+        {
+          "test_id": "test_4301kt618rcvfagrcjjhak0grzf0",
+          "workflow_node_id": null
+        }
+      ],
+      "referenced_tests_ids": [
+        "test_9201kt618rcsfrj8vwe7pw2d773n",
+        "test_4301kt618rcvfagrcjjhak0grzf0"
+      ]
+    },
+    "archived": false,
+    "guardrails": {
+      "version": "1",
+      "focus": {
+        "is_enabled": false
+      },
+      "prompt_injection": {
+        "is_enabled": false
+      },
+      "content": {
+        "execution_mode": "streaming",
+        "config": {
+          "sexual": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "violence": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "harassment": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "self_harm": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "profanity": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "religion_or_politics": {
+            "is_enabled": false,
+            "threshold": "medium"
+          },
+          "medical_and_legal_information": {
+            "is_enabled": false,
+            "threshold": "medium"
+          }
+        },
+        "trigger_action": {
+          "type": "end_call"
+        }
+      },
+      "moderation": null,
+      "custom": {
+        "config": {
+          "configs": []
+        }
+      }
+    },
+    "summary_language": null,
+    "auth": {
+      "enable_auth": false,
+      "allowlist": [],
+      "require_origin_header": false,
+      "shareable_token": null
+    },
+    "call_limits": {
+      "agent_concurrency_limit": -1,
+      "daily_limit": 100000,
+      "bursting_enabled": true
+    },
+    "ban": null,
+    "smb_metadata": null,
+    "privacy": {
+      "record_voice": true,
+      "retention_days": -1,
+      "delete_transcript_and_pii": false,
+      "delete_audio": false,
+      "apply_to_existing_conversations": false,
+      "zero_retention_mode": false,
+      "conversation_history_redaction": {
+        "enabled": false,
+        "entities": []
+      }
+    },
+    "trust_context": "low",
+    "analysis_llm": "gemini-2.5-flash",
+    "alerting": null,
+    "safety": {
+      "is_blocked_ivc": false,
+      "is_blocked_non_ivc": false,
+      "ignore_safety_evaluation": false
+    }
+  },
+  "phone_numbers": [
+    {
+      "phone_number": "+19787050884",
+      "label": "freelancer",
+      "supports_inbound": true,
+      "supports_outbound": true,
+      "phone_number_id": "phnum_8101kt6q45myee48r8np2nsce1bf",
+      "assigned_agent": {
+        "agent_id": "agent_3101kt618rfre5zstq1ty2hw16dm",
+        "agent_name": "khaleque-answering-machine",
+        "environment": null,
+        "branch_id": "agtbrch_1801kt618tphf739a5rncanf823q"
+      },
+      "provider": "twilio"
+    }
+  ],
+  "whatsapp_accounts": [],
+  "workflow": {
+    "edges": {},
+    "nodes": {
+      "start_node": {
+        "type": "start",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "edge_order": []
+      }
+    },
+    "prevent_subagent_loops": true
+  },
+  "access_info": {
+    "is_creator": true,
+    "creator_name": "Kabir Khaleque",
+    "creator_email": "kabir911.kk@gmail.com",
+    "role": "admin",
+    "anonymous_access_level_override": null,
+    "access_source": "creator"
+  },
+  "tags": [],
+  "version_id": "agtvrsn_6901ktb4p8crem5bgnz0496dhqpw",
+  "branch_id": "agtbrch_1801kt618tphf739a5rncanf823q",
+  "main_branch_id": "agtbrch_1801kt618tphf739a5rncanf823q",
+  "coaching_settings": null,
+  "procedures": {},
+  "trust_context": "low"
+}

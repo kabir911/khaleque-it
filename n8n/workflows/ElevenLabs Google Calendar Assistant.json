@@ -11,8 +11,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -784,
-        -144
+        -832,
+        48
       ],
       "id": "2d74c115-389d-4fce-99bd-90d34bc4c714",
       "name": "Webhook",
@@ -38,16 +38,15 @@
               }
             }
           ],
-          "combinATOR": "and",
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -560,
-        -144
+        -608,
+        48
       ],
       "id": "652e633e-a34d-4f93-9c3f-6448f4a92c36",
       "name": "If Check Action"
@@ -70,7 +69,7 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1,
       "position": [
-        -336,
+        -384,
         -240
       ],
       "id": "21039d75-8659-4ddf-a3a5-a7f92e95cc1b",
@@ -89,7 +88,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -112,
+        -160,
         -240
       ],
       "id": "b8344ddc-cfb9-46a4-a4d4-5bfc4241117c",
@@ -106,15 +105,15 @@
         "start": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
         "end": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).plus({ minutes: 30 }).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
         "additionalFields": {
-          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }}",
+          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }} with email {{ $json.body.email }}",
           "summary": "=  IT Consultation - {{ $json.body.name }}"
         }
       },
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1,
       "position": [
-        -336,
-        -16
+        64,
+        336
       ],
       "id": "4e4b4963-f5af-4273-a741-53241da76acf",
       "name": "Google Calendar - Create Event",
@@ -134,8 +133,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        -112,
-        -16
+        288,
+        144
       ],
       "id": "8d9df8b5-780f-43fa-8d24-f019ccc73b10",
       "name": "Respond Success"
@@ -149,11 +148,144 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        112,
+        64,
         -240
       ],
       "id": "2296e45b-3727-42cc-9c7b-93c932826790",
       "name": "Respond Slots"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "start": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "end": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).plus({ minutes: 30 }).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ $json.body.email }}"
+          ],
+          "conferenceDataUi": {
+            "conferenceDataValues": {
+              "conferenceSolution": "hangoutsMeet"
+            }
+          },
+          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }} with email {{ $json.body.email }}",
+          "summary": "=  IT Consultation - {{ $json.body.name }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        64,
+        144
+      ],
+      "id": "d006c395-d3b1-425c-8086-c59936a693ef",
+      "name": "Google Calendar - Create Event (VC)",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "098f89cd-6a27-4092-8d09-bff2788a95da",
+              "leftValue": "={{ $json.body.action }}",
+              "rightValue": "cancel",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -384,
+        144
+      ],
+      "id": "a5c92c6d-08b8-41cc-9c44-52e23f551788",
+      "name": "check if cancel"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2ddd60d8-d345-464b-a499-ac4ce3e1492e",
+              "leftValue": "={{ $json.body.video_call }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -160,
+        240
+      ],
+      "id": "59972d33-b9d4-4d95-8192-73c37b10b872",
+      "name": "with video call"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "eventId": "={{ $json.body.event_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        64,
+        -48
+      ],
+      "id": "05b6322c-39a4-41d0-ab48-0eb9a2e34522",
+      "name": "Delete an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -213,7 +345,7 @@
         ],
         [
           {
-            "node": "Google Calendar - Create Event",
+            "node": "check if cancel",
             "type": "main",
             "index": 0
           }
@@ -252,6 +384,64 @@
           }
         ]
       ]
+    },
+    "Google Calendar - Create Event (VC)": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check if cancel": {
+      "main": [
+        [
+          {
+            "node": "Delete an event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "with video call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "with video call": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar - Create Event (VC)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Calendar - Create Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -262,7 +452,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "8875b40e-bc5f-4fe5-a7e7-88b85c132ba6",
+  "versionId": "5111a530-a5f0-400f-8499-b9d4c623aeb5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3ea6496d728c98b23597b446bd009c2394751dfb58d237e69346212a0717cf14"
