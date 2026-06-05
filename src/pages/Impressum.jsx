@@ -22,8 +22,6 @@ export default function Impressum() {
 
       <LegalSection heading={t('impressum.contactHeading')}>
         <p>
-          {t('contact.phone')}: +49 (0) 172 682 4586
-          <br />
           {t('contact.email')}: support@divm.com
         </p>
       </LegalSection>

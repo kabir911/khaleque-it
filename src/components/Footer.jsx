@@ -86,7 +86,7 @@ export default function Footer() {
             </li>
             <li>
               <a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`} className="hover:text-amber-400">
-                {CONTACT.phone}
+                {CONTACT.sphone}
               </a>
             </li>
           </ul>
