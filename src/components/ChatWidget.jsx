@@ -8,7 +8,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [provider, setProvider] = useState('ollama'); 
+  const [provider, setProvider] = useState('gemini'); 
 
   const CHAT_CONFIG = JSON.parse(import.meta.env.VITE_CHATCONFIG);
 
