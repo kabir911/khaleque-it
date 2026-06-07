@@ -134,6 +134,9 @@ export default function Contact() {
 
           <div className="mt-8 space-y-3 text-navy-200">
             <p>
+              {t('contact.directChat')}{' '}
+            </p>
+            <p>
               {t('contact.directEmail')}{' '}
               <a href={`mailto:${CONTACT.email}`} className="font-semibold text-amber-400 hover:underline">
                 {CONTACT.email}

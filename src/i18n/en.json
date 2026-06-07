@@ -204,8 +204,9 @@
     "errorEmail": "Please enter a valid email address.",
     "errorGeneric": "Something went wrong while sending. Please try again, or email me directly.",
     "notConfigured": "The contact form isn't connected to its destination yet. Add your Google Sheets URL in src/config.js to enable sending.",
+    "directChat": "Prefer chat? Click the chat icon",
     "directEmail": "Prefer email? Write to",
-    "aiAssistantCall": "Call my AI assistant"
+    "aiAssistantCall": "or Call my AI assistant"
   },
   "footer": {
     "tagline": "Practical AI & IT consulting for local business in the Frankfurt Rhine-Main region.",

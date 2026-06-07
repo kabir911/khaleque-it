@@ -204,8 +204,9 @@
     "errorEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     "errorGeneric": "Beim Senden ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt.",
     "notConfigured": "Das Kontaktformular ist noch nicht mit seinem Ziel verbunden. Tragen Sie Ihre Google-Sheets-URL in src/config.js ein, um den Versand zu aktivieren.",
+    "directChat": "Lieber chat? Klicken Sie das chat icon",
     "directEmail": "Lieber per E-Mail? Schreiben Sie an",
-    "aiAssistantCall": "Rufen Sie meinen KI-Assistenten an"
+    "aiAssistantCall": "oder Rufen Sie meinen KI-Assistenten an"
   },
   "footer": {
     "tagline": "Praktische KI- & IT-Beratung für lokale Unternehmen im Rhein-Main-Gebiet.",
