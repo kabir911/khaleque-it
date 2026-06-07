@@ -95,59 +95,30 @@ export default function ChatWidget() {
     }
   };
 
-  // Handler for Local Ollama API Calls
-  const callOllamaAPI = async (chatHistory, userMsg) => {
-    const { host, model } = CHAT_CONFIG.ollama;
+  // Handler for Local Ollama API and Gemini Calls
+  const callAPI = async (route, chatHistory, userMsg) => {
     
-    const response = await fetch(`${host}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: model,
-        messages: [...chatHistory, userMsg],
-        stream: false
-      }),
-    });
-    
-    if (!response.ok) throw new Error(`Ollama server responded with status ${response.status}`);
-    const data = await response.json();
-    return data.message.content;
-  };
-
-  // Handler for Google Gemini API Calls
-  const callGeminiAPI = async (chatHistory, userMsg) => {
-    const { url, model } = CHAT_CONFIG.gemini;
-    const key = userGeminiKey; 
-
-    const messages = [...chatHistory, userMsg].map(msg => ({
-      role: msg.role === 'assistant' ? 'model' : 'user',
-      content: msg.content
-    }));
-
+    const payload = route === 0 ? {
+      messages: [...chatHistory, userMsg]
+    }: {
+      messages: chatHistory.map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      })),
+      user_msg: userMsg
+    };
+    console.log('payload:',payload);
     const response = await fetch(
-      `${url}`,
+      route === 0 ? CHAT_CONFIG.ollama.url : CHAT_CONFIG.gemini.url,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          model,
-          messages
-        }),
+        body: JSON.stringify(payload)
       }
     );
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error?.message || `Gemini API responded with status ${response.status}`);
-    }
-    
+    if (!response.ok) { throw new Error(`Server responded with status ${response.status}`); }
     const data = await response.json();
-    
-    if (data.choices?.[0]?.message?.content) {
-      return data.choices[0].message.content;
-    } else {
-      throw new Error("Malformed response structure from Gemini API");
-    }
+    return data.message.content;    
   };
 
   const handleSendMessage = async (e) => {
@@ -162,9 +133,9 @@ export default function ChatWidget() {
     try {
       let replyText = "";
       if (provider === 'ollama') {
-        replyText = await callOllamaAPI(messages, userMessage);
+        replyText = await callAPI(0, messages, userMessage);
       } else {
-        replyText = await callGeminiAPI(messages, userMessage);
+        replyText = await callAPI(1, messages, userMessage);        
       }
 
       setMessages((prev) => [...prev, { role: 'assistant', content: replyText }]);
