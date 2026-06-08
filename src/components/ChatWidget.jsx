@@ -9,6 +9,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [provider, setProvider] = useState('gemini'); 
+  const [sessionId, setSessionId] = useState('');
 
   const CHAT_CONFIG = JSON.parse(import.meta.env.VITE_CHATCONFIG);
 
@@ -28,6 +29,8 @@ export default function ChatWidget() {
       setUserGeminiKey(savedKey);
       setKeyInput(savedKey);
     }
+    const newSessionId = crypto.randomUUID();
+    setSessionId(newSessionId);
   }, []);
 
   useEffect(() => {
@@ -99,8 +102,11 @@ export default function ChatWidget() {
   const callAPI = async (route, chatHistory, userMsg) => {
     
     const payload = route === 0 ? {
-      messages: [...chatHistory, userMsg]
+      session_id: sessionId,
+      messages: [...chatHistory, userMsg],
+      user_msg: userMsg
     }: {
+      session_id: sessionId,
       messages: chatHistory.map(msg => ({
         role: msg.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: msg.content }]
