@@ -20,7 +20,6 @@ export default function ElevenLabsWidget() {
   return (
     // 3. Render the official web component using your unique Agent ID
     <elevenlabs-convai
-      key={t}
       agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}      
       action-text={t('widget.action')}
       start-call-text={t('widget.start')}
