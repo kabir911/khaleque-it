@@ -10,8 +10,6 @@ export default function Impressum() {
 
       <LegalSection heading={t('impressum.providerHeading')}>
         <p>
-          Kabir Nazmul Khaleque
-          <br />
           Khaleque IT Consulting
           <br />
           60594 Frankfurt am Main

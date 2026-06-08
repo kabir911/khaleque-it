@@ -7,6 +7,12 @@
     "contact": "Kontakt",
     "cta": "Kostenloses Gespräch"
   },
+  "widget": {
+    "action": "Buchen Sie Ihren Entdeckungsanruf",
+    "start": "Start",
+    "listen": "Hören",
+    "speak": "Sprechen"
+  },
   "hero": {
     "eyebrow": "KI- & IT-Beratung · Frankfurt am Main",
     "title": "Praktische KI, die Umsatz steigert und Kosten senkt – für lokale Unternehmen",

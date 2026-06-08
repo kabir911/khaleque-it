@@ -7,6 +7,12 @@
     "contact": "Contact",
     "cta": "Book a free call"
   },
+  "widget": {
+    "action": "Book you discovery call",
+    "start": "Start",
+    "listen": "Listen",
+    "speak": "Speak"
+  },
   "hero": {
     "eyebrow": "AI & IT Consulting · Frankfurt am Main",
     "title": "Practical AI that grows revenue and cuts costs for local business",

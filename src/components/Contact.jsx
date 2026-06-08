@@ -142,8 +142,7 @@ export default function Contact() {
                 {CONTACT.email}
               </a>
             </p>
-            <p>({t('contact.aiAssistantCall')}) {CONTACT.sphone}</p>
-            <p>{CONTACT.city}</p>
+            <p>({t('contact.aiAssistantCall')}) {CONTACT.sphone}</p>            
           </div>
         </div>
 
