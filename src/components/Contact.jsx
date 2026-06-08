@@ -141,8 +141,7 @@ export default function Contact() {
               <a href={`mailto:${CONTACT.email}`} className="font-semibold text-amber-400 hover:underline">
                 {CONTACT.email}
               </a>
-            </p>
-            <p>({t('contact.aiAssistantCall')}) {CONTACT.sphone}</p>            
+            </p>            
           </div>
         </div>
 

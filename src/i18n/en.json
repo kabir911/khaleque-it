@@ -5,11 +5,14 @@
     "pricing": "Pricing",
     "testimonials": "Testimonials",
     "contact": "Contact",
-    "cta": "Book a free call"
+    "cta": "Book a free call",
+    "try": "Route phone calls to agents, live video avatars, hybrid setups.",
+    "tryBut": "Try it out"
   },
   "widget": {
     "action": "Book you discovery call",
     "start": "Start",
+    "end": "End",
     "listen": "Listen",
     "speak": "Speak"
   },
@@ -212,7 +215,7 @@
     "notConfigured": "The contact form isn't connected to its destination yet. Add your Google Sheets URL in src/config.js to enable sending.",
     "directChat": "Prefer chat? Click the call or chat icon",
     "directEmail": "Prefer email? Write to",
-    "aiAssistantCall": "or Call my AI assistant"
+    "aiAssistantCall": "Call my AI assistant"
   },
   "footer": {
     "tagline": "Practical AI & IT consulting for local business in the Frankfurt Rhine-Main region.",

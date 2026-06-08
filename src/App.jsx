@@ -49,6 +49,12 @@ function ScrollToTop() {
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTry, setIsTry] = useState(false);
+
+  const handleTry = () => {
+    console.log('Toggling TRY!')
+    setIsTry((prev) => !prev);
+  };
   
   // Inject avatar chat button styles on mount
   useEffect(() => {
@@ -67,40 +73,46 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>        
       </main>      
-      <Footer />
+      <Footer onTry={handleTry} currentStatus={isTry}/>
       <ElevenLabsWidget />
-      <ChatWidget />
-      <button 
-        onClick={() => setIsOpen(!isOpen)} 
-        style={styles.floatingButton}
-        className="avatar-chat-button"
-        title="Chat with AI Avatar"
-      >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
+      {isTry && (
+        <div>
+        <ChatWidget />        
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          style={styles.floatingButton}
+          className="avatar-chat-button"
+          title="Chat with AI Avatar"
         >
-          {/* Avatar head */}
-          <circle cx="12" cy="8" r="4" />
-          {/* Avatar body/chat bubble */}
-          <path d="M 6 18 Q 6 14 12 14 Q 18 14 18 18 L 18 20 Q 18 22 16 22 L 8 22 Q 6 22 6 20 Z" />
-          {/* Chat indicator dots */}
-          <circle cx="10" cy="18" r="1.5" fill="currentColor" />
-          <circle cx="12" cy="18" r="1.5" fill="currentColor" />
-          <circle cx="14" cy="18" r="1.5" fill="currentColor" />
-        </svg>
-      </button>
+          <svg 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            {/* Avatar head */}
+            <circle cx="12" cy="8" r="4" />
+            {/* Avatar body/chat bubble */}
+            <path d="M 6 18 Q 6 14 12 14 Q 18 14 18 18 L 18 20 Q 18 22 16 22 L 8 22 Q 6 22 6 20 Z" />
+            {/* Chat indicator dots */}
+            <circle cx="10" cy="18" r="1.5" fill="currentColor" />
+            <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+            <circle cx="14" cy="18" r="1.5" fill="currentColor" />
+          </svg>
+        </button>      
+        </div>
+      )}
+
       {isOpen && (
         <div style={styles.iframeContainer}>
           <iframe src="https://embed.liveavatar.com/v1/06dd7551-b9b6-40a9-b877-f630f1f32962?orientation=horizontal" allow="microphone" title="LiveAvatar Embed" style="aspect-ratio: 16/9;"></iframe>          
         </div>
       )}
+            
     </div>
   )
 }

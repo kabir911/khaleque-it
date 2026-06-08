@@ -29,8 +29,8 @@ export default function Services() {
               <p className="mt-2 text-sm leading-relaxed text-navy-600">{item.desc}</p>
             </div>
           ))}
-        </div>
-      </div>
+        </div>        
+      </div>      
     </section>
   )
 }

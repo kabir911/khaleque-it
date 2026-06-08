@@ -5,11 +5,14 @@
     "pricing": "Preise",
     "testimonials": "Referenzen",
     "contact": "Kontakt",
-    "cta": "Kostenloses Gespräch"
+    "cta": "Kostenloses Gespräch",
+    "try": "Leiten Sie Telefonanrufe an Agenten, Live-Video-Avatare und Hybrid-Setups weiter.",
+    "tryBut": "Probieren Sie es aus"
   },
   "widget": {
     "action": "Buchen Sie Ihren Entdeckungsanruf",
     "start": "Start",
+    "end": "Enden",
     "listen": "Hören",
     "speak": "Sprechen"
   },
@@ -212,7 +215,7 @@
     "notConfigured": "Das Kontaktformular ist noch nicht mit seinem Ziel verbunden. Tragen Sie Ihre Google-Sheets-URL in src/config.js ein, um den Versand zu aktivieren.",
     "directChat": "Lieber chat? Klicken Sie das call oder chat icon",
     "directEmail": "Lieber per E-Mail? Schreiben Sie an",
-    "aiAssistantCall": "oder Rufen Sie meinen KI-Assistenten an"
+    "aiAssistantCall": "Rufen Sie meinen KI-Assistenten an"
   },
   "footer": {
     "tagline": "Praktische KI- & IT-Beratung für lokale Unternehmen im Rhein-Main-Gebiet.",

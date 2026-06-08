@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx'; 
 
 export default function ElevenLabsWidget() {
@@ -9,8 +9,8 @@ export default function ElevenLabsWidget() {
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
     script.async = true;
+    
     document.body.appendChild(script);
-
     // 2. Clean up the script when the component unmounts
     return () => {
       document.body.removeChild(script);
@@ -19,14 +19,15 @@ export default function ElevenLabsWidget() {
 
   return (
     // 3. Render the official web component using your unique Agent ID
-    <elevenlabs-convai 
-      agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}
-      language="{t}" 
-      action-text="{t('widget.action')}"
+    <elevenlabs-convai
+      key={t}
+      agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}      
+      action-text={t('widget.action')}
       start-call-text={t('widget.start')}
-      listening-text={t('widget.listen')}
-      speaking-text={t('widget.speak')}
+      end-call-text={t('widget.end')}
+      listen-text={t('widget.listen')}
+      speak-text={t('widget.speak')}
     >
-    </elevenlabs-convai>
+    </elevenlabs-convai>    
   );
 }
