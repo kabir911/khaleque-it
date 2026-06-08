@@ -4,8 +4,10 @@ import { useLang } from '../i18n/LanguageContext.jsx';
 export default function ElevenLabsWidget() {
   const { t, lang } = useLang()
   const widgetRef = useRef(null)
+  let wTimer = null;
 
   const setWidgetAttributes = () => {
+    console.log('setting attributes:');
     try {
       if (widgetRef && widgetRef.current) {
         const shadowHost = widgetRef.current.shadowRoot 
@@ -33,6 +35,24 @@ export default function ElevenLabsWidget() {
     setWidgetAttributes();
     obs.disconnect();     
   });
+
+  const sizeObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      // Inspect the wrapper when attributes or styles change
+      if (mutation.type === 'attributes') {
+        // Check if ElevenLabs shifted state to a smaller dimension/class
+
+        if (wTimer) { 
+          clearTimeout(wTimer);
+          wTimer = null;
+        }
+        wTimer = setTimeout(() => {          
+          setWidgetAttributes();
+          wTimer = null;
+        }, 500)
+      }
+    });
+  });
   
   useEffect(() => {            
     // 1. Inject the ElevenLabs widget script into the document body
@@ -44,6 +64,11 @@ export default function ElevenLabsWidget() {
 
     script.onload = () => {
       observer.observe(widgetRef.current.shadowRoot, { childList: true, subtree: true });      
+      sizeObserver.observe(widgetRef.current.shadowRoot, {
+        attributes: true,         // Watches for class or style property toggles
+        attributeFilter: ['style', 'class'], 
+        subtree: true             // Looks inside the shadow tree if needed
+      });
     };
     // 2. Clean up the script when the component unmounts
     return () => {
