@@ -49,7 +49,7 @@ export default function Hero() {
             {stats.map((s, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
               >
                 <p className="text-3xl font-extrabold text-amber-400">{s.value}</p>
                 <p className="mt-1 text-sm text-navy-200">{s.label}</p>

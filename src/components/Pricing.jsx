@@ -33,7 +33,7 @@ export default function Pricing() {
           {(Array.isArray(tiers) ? tiers : []).map((tier, i) => (
             <div
               key={i}
-              className={`relative flex flex-col rounded-2xl border p-7 shadow-sm ${
+              className={`relative flex flex-col rounded-2xl border p-7 shadow-xs ${
                 tier.highlight
                   ? 'border-amber-400 bg-white ring-2 ring-amber-400 lg:-mt-3 lg:mb-0'
                   : 'border-navy-100 bg-white'

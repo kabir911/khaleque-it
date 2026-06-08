@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition ${
-        scrolled ? 'bg-white/95 shadow-sm backdrop-blur' : 'bg-white/80 backdrop-blur'
+        scrolled ? 'bg-white/95 shadow-xs backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'
       }`}
     >
       <nav className="container-narrow flex h-16 items-center justify-between">
@@ -76,7 +76,7 @@ export default function Navbar() {
             </button>
           ))}
           <LanguageSwitcher />
-          <button onClick={() => goToSection('contact')} className="btn-primary !px-5 !py-2 text-sm">
+          <button onClick={() => goToSection('contact')} className="btn-primary px-5! py-2! text-sm">
             {t('nav.cta')}
           </button>
         </div>

@@ -20,7 +20,7 @@ export default function Services() {
           {(Array.isArray(items) ? items : []).map((item, i) => (
             <div
               key={i}
-              className="group rounded-2xl border border-navy-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-amber-200 hover:shadow-md"
+              className="group rounded-2xl border border-navy-100 bg-white p-6 shadow-xs transition hover:-translate-y-1 hover:border-amber-200 hover:shadow-md"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition group-hover:bg-amber-500 group-hover:text-white">
                 <Icon name={item.icon} />

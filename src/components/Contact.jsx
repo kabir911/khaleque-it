@@ -120,7 +120,7 @@ export default function Contact() {
   }
 
   const field =
-    'w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-navy-900 placeholder-navy-400 shadow-sm focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200'
+    'w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-navy-900 placeholder-navy-400 shadow-xs focus:border-amber-400 focus:outline-hidden focus:ring-2 focus:ring-amber-200'
 
   return (
     <section id="contact" className="bg-navy-950 py-16 text-white sm:py-24">

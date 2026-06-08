@@ -1,6 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@theme {
+  --color-navy-50: #f0f4f9;
+  --color-navy-100: #d9e2ef;
+  --color-navy-200: #b3c5df;
+  --color-navy-300: #8aa5cd;
+  --color-navy-400: #5c7fb3;
+  --color-navy-500: #3d5f95;
+  --color-navy-600: #2e4a78;
+  --color-navy-700: #243a5e;
+  --color-navy-800: #1c2e4a;
+  --color-navy-900: #16243a;
+  --color-navy-950: #0d1626;
+
+  --color-amber-50: #fff8eb;
+  --color-amber-100: #ffedc6;
+  --color-amber-200: #ffd888;
+  --color-amber-300: #ffbf4a;
+  --color-amber-400: #ffa620;
+  --color-amber-500: #f98307;
+  --color-amber-600: #dd6002;
+  --color-amber-700: #b74206;
+  --color-amber-800: #94330c;
+  --color-amber-900: #7a2b0d;
+
+  --font-sans: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 font-semibold text-white shadow-xs transition hover:bg-amber-600 focus:outline-hidden focus:ring-2 focus:ring-amber-400 focus:ring-offset-2;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-navy-200 bg-white px-6 py-3 font-semibold text-navy-800 transition hover:border-navy-400 hover:bg-navy-50 focus:outline-hidden focus:ring-2 focus:ring-navy-300;
+}
+
+@utility container-narrow {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility eyebrow {
+  @apply text-sm font-semibold uppercase tracking-wider text-amber-600;
+}
 
 @layer base {
   html {
@@ -12,20 +76,5 @@
   /* Offset anchored sections so the sticky navbar doesn't overlap headings */
   section[id] {
     scroll-margin-top: 5rem;
-  }
-}
-
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-navy-200 bg-white px-6 py-3 font-semibold text-navy-800 transition hover:border-navy-400 hover:bg-navy-50 focus:outline-none focus:ring-2 focus:ring-navy-300;
-  }
-  .container-narrow {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
-  }
-  .eyebrow {
-    @apply text-sm font-semibold uppercase tracking-wider text-amber-600;
   }
 }
