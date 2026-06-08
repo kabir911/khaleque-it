@@ -11,7 +11,7 @@
   },
   "widget": {
     "action": "Buchen Sie ein Entdeckungsgespräch",
-    "start": "Start",
+    "start": "Starten Sie einen Anruf",
     "end": "Enden",
     "listen": "Hören",
     "speak": "Sprechen"

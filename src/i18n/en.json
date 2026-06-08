@@ -11,7 +11,7 @@
   },
   "widget": {
     "action": "Book a discovery call",
-    "start": "Start",
+    "start": "Start a call",
     "end": "End",
     "listen": "Listen",
     "speak": "Speak"
