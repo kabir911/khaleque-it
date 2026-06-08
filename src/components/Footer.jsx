@@ -86,21 +86,23 @@ export default function Footer({ onTry, currentStatus }) {
                 {CONTACT.email}
               </a>
             </li>
+{/*            
             <li>
               <a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`} className="hover:text-amber-400">
-                {CONTACT.sphone}
+                {CONTACT.phone}
               </a>
             </li>
+*/}            
           </ul>
         </div>        
       </div>
       <div className="container-narrow flex flex-col items-center justify-between gap-2 py-5 text-xs text-navy-400 sm:flex-row">
-        <p>{t('nav.try')}&nbsp;&nbsp;
-          <button className="btn-primary disabled:opacity-60" onClick={onTry}>
-            {t('nav.tryBut')}
-          </button>
-          <p>{currentStatus && (<div>{t('contact.aiAssistantCall')}&nbsp;{CONTACT.sphone}</div>)}</p>
-        </p>
+        <p>{t('nav.try')}&nbsp;&nbsp;{currentStatus && (<div>{t('contact.aiAssistantCall')}&nbsp;{CONTACT.sphone}</div>)}</p>        
+      </div>
+      <div className="container-narrow flex flex-col items-center justify-between gap-2 py-5 text-xs text-navy-400 sm:flex-row">
+        <button className="btn-primary disabled:opacity-60" onClick={onTry}>
+          {t('nav.tryBut')}
+        </button>        
       </div>      
       <div className="border-t border-white/10">
         <div className="container-narrow flex flex-col items-center justify-between gap-2 py-5 text-xs text-navy-400 sm:flex-row">
