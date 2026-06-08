@@ -31,17 +31,17 @@ export default function Contact() {
   const widgetId = useRef(null)
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [errorMsg, setErrorMsg] = useState('')
-
+  
   // Render the reCAPTCHA widget once the script is available.
   useEffect(() => {
     let cancelled = false
     loadRecaptcha()
       .then((grecaptcha) => {
-        if (cancelled || !widgetRef.current || widgetId.current !== null) return
+        // if (cancelled || !widgetRef.current || widgetId.current !== null) return
         widgetId.current = grecaptcha.render(widgetRef.current, {
           sitekey: RECAPTCHA_SITE_KEY,
           hl: lang,
-        })
+        })        
       })
       .catch(() => {
         /* reCAPTCHA failed to load — form will still validate other fields */
@@ -52,7 +52,7 @@ export default function Contact() {
     // We intentionally render the widget only once; language change for the
     // widget chrome requires a reload, which is an acceptable trade-off.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [lang])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -112,10 +112,12 @@ export default function Contact() {
       setStatus('success')
       form.reset()      
       window.grecaptcha?.reset(widgetId.current)                
+      forceRerender()
     } catch (_) {
       setStatus('error')
       setErrorMsg(t('contact.errorGeneric'))      
-      window.grecaptcha?.reset(widgetId.current)      
+      window.grecaptcha?.reset(widgetId.current)
+      forceRerender()
     }
   }
 
@@ -204,7 +206,7 @@ export default function Contact() {
 
               <div>
                 <p className="mb-2 text-sm text-navy-500">{t('contact.captchaNote')}</p>
-                <div ref={widgetRef} />
+                <div key={lang} ref={widgetRef} />
               </div>
 
               {status === 'error' && errorMsg && (

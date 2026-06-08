@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx'; 
 
 export default function ElevenLabsWidget() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   
   useEffect(() => {            
     // 1. Inject the ElevenLabs widget script into the document body
@@ -20,6 +20,7 @@ export default function ElevenLabsWidget() {
   return (
     // 3. Render the official web component using your unique Agent ID
     <elevenlabs-convai
+      key={lang}
       agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}      
       action-text={t('widget.action')}
       start-call-text={t('widget.start')}
