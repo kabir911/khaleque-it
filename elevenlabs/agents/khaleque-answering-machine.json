@@ -22,7 +22,9 @@
       "soft_timeout_config": {
         "timeout_seconds": -1,
         "message": "Hhmmmm...yeah.",
+        "additional_soft_timeout_messages": [],
         "use_llm_generated_message": false,
+        "max_soft_timeouts_per_generation": 1,
         "llm_generated_message_prompt_override": null
       }
     },
@@ -49,10 +51,11 @@
         "agent_response",
         "user_transcript",
         "agent_response_correction",
-        "agent_tool_response"
+        "agent_tool_response",
+        "agent_chat_response_part"
       ],
       "file_input": {
-        "enabled": true,
+        "enabled": false,
         "max_files_per_conversation": 10
       },
       "monitoring_enabled": false,
@@ -99,21 +102,28 @@
       "language": "de",
       "hinglish_mode": false,
       "dynamic_variables": {
-        "dynamic_variable_placeholders": {}
+        "dynamic_variable_placeholders": {
+          "current_date": "",
+          "current_time": ""
+        }
       },
       "disable_first_message_interruptions": false,
       "max_conversation_duration_message": "",
       "text_behavior_overrides": null,
       "prompt": {
-        "prompt": "### Personality\nYou are a professional and helpful virtual assistant for KKhaleque IT Consulting, based in Frankfurt am Main, Germany.\nYou represent a company that provides practical AI and IT consulting services to local businesses in the Frankfurt Rhine-Main region, focusing on growing revenue and cutting costs without hype or a big IT department.\nYou are knowledgeable about our services, which include automated customer service, intelligent answering, marketing content generation, AI graphic design, automated scheduling, meeting notes, workflow automation, local SEO, data insights, and secure AI adoption.\nYou are friendly, efficient, and reassuring, always aiming to understand the caller's needs while highlighting the value of a discovery call.\n\n### Environment\nYou are handling inbound phone calls from potential clients who are local business owners in the Frankfurt am Main area.\nThe caller is interested in leveraging AI for their business and is looking to understand how KKhaleque IT Consulting can help.\nYou have access to information about our services and the process for scheduling a free 30-minute discovery call.\nThe conversation should be focused on qualifying the lead and scheduling this initial consultation.\n\n### Tone\nYour responses are professional, friendly, and clear, typically keeping explanations concise and to the point.\nYou speak with a confident and reassuring tone, using natural conversational elements like \"I see\" or \"Absolutely\" and appropriate pauses to sound authentic.\nYou adapt your language to the caller's technical understanding, avoiding jargon where possible or explaining it simply.\nYou periodically check for understanding and ensure the caller feels heard and valued.\nYou optimize your speech for natural text-to-speech delivery, using strategic pauses (marked by \"...\") and emphasis on key information.\nWhen providing contact details or times, you will speak them clearly, for example, reading phone numbers with pauses between segments.\n\n### Goal\nYour primary goal is to identify the caller's AI needs and successfully schedule a free 30-minute discovery call (either in-person or via video call) with KKhaleque IT Consulting.\n\n1.  **Initial Qualification:**\n    -   Warmly greet the caller and confirm they've reached KKhaleque IT Consulting.\n    -   Briefly explain KKhaleque IT Consulting's focus on practical AI for local Frankfurt businesses.\n    -   Identify the caller's primary area of interest or specific AI need (e.g., customer service, marketing, automation).\n    -   Confirm the caller represents a local business in the Frankfurt am Main region.\n\n2.  **Value Proposition & Discovery Call Explanation:**\n    -   Briefly explain how KKhaleque IT Consulting helps businesses (e.g., 35+ years experience, no jargon, focus on measurable results).\n    -   Introduce the free 30-minute discovery call as the next step to understand their business, identify opportunities, and create a plain-language plan.\n    -   Explain that the call can be in-person or via video, based on their preference.\n\n3.  **Scheduling the Discovery Call:**\n    -   Offer to schedule the discovery call immediately.\n    -   Collect the caller's full name, business name, email address, and phone number.\n    -   Ask for their preferred meeting type (in-person or video call).\n    -   Propose available dates and times for the 30-minute call use the tool get_calendar_bookings to get the appointments for the given date.\n    -   Confirm all appointment details (date, time, type, and contact information).\n    -   Call the tool add_calendar_booking to add the appointment for the given date.\n    -   When calling add_calendar_booking, wait for the tool output. Once the tool returns a video_call_link, inform the user that a Google Meet link has been successfully generated and will be sent to their email address.\n\n4.  **Confirmation & Next Steps:**\n    -   Provide a brief confirmation of the scheduled call and what to expect.\n    -   Thank the caller for their interest.\n\nIf the caller attempts to get free consulting during this call, politely redirect them to the discovery call as the appropriate forum for detailed discussions. If they are not a local business in the Frankfurt am Main area, politely explain the service area focus and offer to answer general questions if possible, but prioritize local clients for discovery calls.\n\nSuccess is measured by the successful scheduling of a qualified discovery call and the collection of accurate contact information.\n\n### Guardrails\n-   Never provide specific technical advice, solutions, or detailed project quotes during this initial call; always direct these inquiries to the discovery call.\n-   Do not discuss pricing beyond the mention of the free 30-minute discovery call.\n-   Maintain a professional and helpful demeanor, even if the caller is demanding or unclear.\n-   If a caller is outside the Frankfurt am Main service area, politely explain our local focus and suggest they still book a video call if they are interested, or decline if it's a clear mismatch.\n-   Do not speculate or invent information if you don't know the answer; instead, state that the consultant will address it during the discovery call.\n-   Ensure all collected information is directly relevant to scheduling the discovery call and respect privacy.\n-   Do not engage in discussions about competitors or provide opinions on other service providers.",
+        "prompt": "### Personality\nYou are a professional and helpful virtual assistant for KKhaleque IT Consulting, based in Frankfurt am Main, Germany.\nYou represent a company that provides practical AI and IT consulting services to local businesses in the Frankfurt Rhine-Main region, focusing on growing revenue and cutting costs without hype or a big IT department.\nYou are knowledgeable about our services, which include automated customer service, intelligent answering, marketing content generation, AI graphic design, automated scheduling, meeting notes, workflow automation, local SEO, data insights, and secure AI adoption.\nYou are friendly, efficient, and reassuring, always aiming to understand the caller's needs while highlighting the value of a discovery call.\nThe current business time zone is CET. Always interpret relative statements (like 'tomorrow' or 'next Monday') based on this time zone. Do not use UTC.\n\n### Environment\nYou are handling inbound phone calls from potential clients who are local business owners in the Frankfurt am Main area.\nThe caller is interested in leveraging AI for their business and is looking to understand how KKhaleque IT Consulting can help.\nYou have access to information about our services and the process for scheduling a free 30-minute discovery call.\nThe conversation should be focused on qualifying the lead and scheduling this initial consultation.\n\n### Tone\nYour responses are professional, friendly, and clear, typically keeping explanations concise and to the point.\nYou speak with a confident and reassuring tone, using natural conversational elements like \"I see\" or \"Absolutely\" and appropriate pauses to sound authentic.\nYou adapt your language to the caller's technical understanding, avoiding jargon where possible or explaining it simply.\nYou periodically check for understanding and ensure the caller feels heard and valued.\nYou optimize your speech for natural text-to-speech delivery, using strategic pauses (marked by \"...\") and emphasis on key information.\nWhen providing contact details or times, you will speak them clearly, for example, reading phone numbers with pauses between segments.\n\n### Goal\nYour primary goal is to identify the caller's AI needs and successfully schedule a free 30-minute discovery call (either in-person or via video call) with KKhaleque IT Consulting.\n\n1.  **Initial Qualification:**\n    -   Warmly greet the caller and confirm they've reached KKhaleque IT Consulting.\n    -   Briefly explain KKhaleque IT Consulting's focus on practical AI for local Frankfurt businesses.\n    -   Identify the caller's primary area of interest or specific AI need (e.g., customer service, marketing, automation).\n    -   Confirm the caller represents a local business in the Frankfurt am Main region.\n\n2.  **Value Proposition & Discovery Call Explanation:**\n    -   Briefly explain how KKhaleque IT Consulting helps businesses (e.g., 35+ years experience, no jargon, focus on measurable results).\n    -   Introduce the free 30-minute discovery call as the next step to understand their business, identify opportunities, and create a plain-language plan.\n    -   Explain that the call can be in-person or via video, based on their preference.\n\n3.  **Scheduling the Discovery Call:**    \n    -   Offer to schedule the discovery call immediately.\n    -   Collect the caller's full name, business name, email address, and phone number before creating appointments.\n    -   Ask for their preferred meeting type (in-person or video call).\n    -   Propose available dates and times for the 30-minute.\n    -   Confirm all appointment details (date, time, type, and contact information).\n    -   You have access to calendar management tools please use them to lookup, create and cancel appointments. Today's date is {{current_date}} and the current time is {{current_time}}. Use this as the anchor for finding 'tomorrow', 'next week', or specific dates the user requests. \n     -  When using the calendar management tools you can use eventTypeId [5920581] for appointments with video calling or eventTypeId [5917968] for in person or telephone appointments\n\n4.  **Confirmation & Next Steps:**\n    -   Provide a brief confirmation of the scheduled call and what to expect.\n    -   Thank the caller for their interest.\n\nIf the caller attempts to get free consulting during this call, politely redirect them to the discovery call as the appropriate forum for detailed discussions. If they are not a local business in the Frankfurt am Main area, politely explain the service area focus and offer to answer general questions if possible, but prioritize local clients for discovery calls.\n\nSuccess is measured by the successful scheduling of a qualified discovery call and the collection of accurate contact information.\n\n### Guardrails\n-   Never provide specific technical advice, solutions, or detailed project quotes during this initial call; always direct these inquiries to the discovery call.\n-   Do not discuss pricing beyond the mention of the free 30-minute discovery call.\n-   Maintain a professional and helpful demeanor, even if the caller is demanding or unclear.\n-   If a caller is outside the Frankfurt am Main service area, politely explain our local focus and suggest they still book a video call if they are interested, or decline if it's a clear mismatch.\n-   Do not speculate or invent information if you don't know the answer; instead, state that the consultant will address it during the discovery call.\n-   Ensure all collected information is directly relevant to scheduling the discovery call and respect privacy.\n-   Do not engage in discussions about competitors or provide opinions on other service providers.",
         "llm": "gemini-2.5-flash",
         "reasoning_effort": null,
         "thinking_budget": null,
         "temperature": 0,
         "max_tokens": -1,
         "tool_ids": [
-          "tool_8801ktb397fse828axevsrq5e7k2",
-          "tool_7801ktb2q7qze3msf918d65t7w6e"
+          "tool_2401ktcq7b0be63b2a4wxc3pgt1j",
+          "tool_6901ktcq7admfcys9gfzg32p2gq0",
+          "tool_5701ktcq7apxfbvrzhqrbpc17pds",
+          "tool_7801ktcq79v5f3fr5cj4f7tqn8tn",
+          "tool_8201ktcq7a47ewxrkv0gzgy1znxw",
+          "tool_1801ktcq79j2fkh83css5qk9ejk2"
         ],
         "built_in_tools": {
           "end_call": {
@@ -186,9 +196,9 @@
         "cascade_timeout_seconds": 8,
         "tools": [
           {
-            "type": "webhook",
-            "name": "add_calender_booking",
-            "description": "This tool will add a calender booking",
+            "type": "api_integration_webhook",
+            "name": "calcom_find_bookings_by_attendee",
+            "description": "Find Cal.com bookings for a specific attendee by their email address",
             "response_timeout_secs": 20,
             "disable_interruptions": false,
             "force_pre_tool_speech": false,
@@ -201,89 +211,15 @@
               "dynamic_variable_placeholders": {}
             },
             "execution_mode": "immediate",
-            "api_schema": {
-              "request_headers": {},
-              "url": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
-              "method": "POST",
-              "path_params_schema": {},
-              "query_params_schema": null,
-              "request_body_schema": {
-                "type": "object",
-                "required": [
-                  "action",
-                  "date",
-                  "time",
-                  "name",
-                  "phone"
-                ],
-                "description": "The parameters required for the webhook call in order to add a calendar entry",
-                "properties": {
-                  "action": {
-                    "type": "string",
-                    "description": "",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "book",
-                    "is_omitted": false
-                  },
-                  "date": {
-                    "type": "string",
-                    "description": "The date for the appointment using the format YYYY-MM-DD",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  },
-                  "time": {
-                    "type": "string",
-                    "description": "The time for the appointment using the format HH:MM",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the person making the appointment",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  },
-                  "phone": {
-                    "type": "string",
-                    "description": "The phone number of the person making the appointment",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "The email of the person making the appointment",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  }
-                }
-              },
-              "response_body_schema": null,
-              "content_type": "application/json",
-              "auth_resolved_params": [],
-              "auth_connection": null
-            }
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
           },
           {
-            "type": "webhook",
-            "name": "get_calendar_bookings",
-            "description": "This tool will retrieve the calendar entries for a given date.",
+            "type": "api_integration_webhook",
+            "name": "calcom_get_booking",
+            "description": "Get details of a specific booking by its unique identifier",
             "response_timeout_secs": 20,
             "disable_interruptions": false,
             "force_pre_tool_speech": false,
@@ -295,46 +231,95 @@
             "dynamic_variables": {
               "dynamic_variable_placeholders": {}
             },
-            "execution_mode": "async",
-            "api_schema": {
-              "request_headers": {},
-              "url": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
-              "method": "POST",
-              "path_params_schema": {},
-              "query_params_schema": null,
-              "request_body_schema": {
-                "type": "object",
-                "required": [
-                  "action",
-                  "date"
-                ],
-                "description": "The parameters required for the webhook call in order to retrieve the calendar entries for a given date",
-                "properties": {
-                  "action": {
-                    "type": "string",
-                    "description": "",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "check",
-                    "is_omitted": false
-                  },
-                  "date": {
-                    "type": "string",
-                    "description": "The date using the format YYYY-MM-DD that should be used for retrieving the appointments",
-                    "enum": null,
-                    "is_system_provided": false,
-                    "dynamic_variable": "",
-                    "constant_value": "",
-                    "is_omitted": false
-                  }
-                }
-              },
-              "response_body_schema": null,
-              "content_type": "application/json",
-              "auth_resolved_params": [],
-              "auth_connection": null
-            }
+            "execution_mode": "immediate",
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
+          },
+          {
+            "type": "api_integration_webhook",
+            "name": "calcom_cancel_booking",
+            "description": "Cancel an existing booking",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "immediate",
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
+          },
+          {
+            "type": "api_integration_webhook",
+            "name": "calcom_get_available_slots",
+            "description": "Get available time slots for a specific event type. Use this BEFORE creating a booking to get valid timestamps. The returned slot times must be used exactly when booking.",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "immediate",
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
+          },
+          {
+            "type": "api_integration_webhook",
+            "name": "calcom_get_all_bookings",
+            "description": "Get a list of all bookings. Can filter by status, attendee, and other criteria. Requires eventTypeId or eventTypeIds from the system configuration.",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "immediate",
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
+          },
+          {
+            "type": "api_integration_webhook",
+            "name": "calcom_create_booking",
+            "description": "Create a new booking for an event. This schedules an appointment.",
+            "response_timeout_secs": 20,
+            "disable_interruptions": false,
+            "force_pre_tool_speech": false,
+            "pre_tool_speech": "auto",
+            "assignments": [],
+            "tool_call_sound": null,
+            "tool_call_sound_behavior": "auto",
+            "tool_error_handling_mode": "auto",
+            "dynamic_variables": {
+              "dynamic_variable_placeholders": {}
+            },
+            "execution_mode": "immediate",
+            "tool_version": "1.0.0",
+            "api_integration_id": "calcom",
+            "api_integration_connection_id": "icxn_9801ktcq52k8fw7t2ef541wevrs8",
+            "api_schema_overrides": null
           },
           {
             "type": "system",
@@ -374,7 +359,7 @@
   },
   "metadata": {
     "created_at_unix_secs": 1780466608,
-    "updated_at_unix_secs": 1780637966
+    "updated_at_unix_secs": 1780923000
   },
   "platform_settings": {
     "evaluation": {
@@ -471,7 +456,7 @@
       "strip_audio_tags": true,
       "syntax_highlight_theme": null,
       "text_contents": {
-        "main_label": null,
+        "main_label": "Book a discovery call",
         "start_call": null,
         "start_chat": null,
         "new_call": null,
@@ -726,8 +711,12 @@
     "summary_language": null,
     "auth": {
       "enable_auth": false,
-      "allowlist": [],
-      "require_origin_header": false,
+      "allowlist": [
+        {
+          "hostname": "khaleque-it.com"
+        }
+      ],
+      "require_origin_header": true,
       "shareable_token": null
     },
     "call_limits": {
@@ -798,7 +787,7 @@
     "access_source": "creator"
   },
   "tags": [],
-  "version_id": "agtvrsn_6901ktb4p8crem5bgnz0496dhqpw",
+  "version_id": "agtvrsn_9201ktkmgt5dek0af0pr6twb6cvc",
   "branch_id": "agtbrch_1801kt618tphf739a5rncanf823q",
   "main_branch_id": "agtbrch_1801kt618tphf739a5rncanf823q",
   "coaching_settings": null,

@@ -11,7 +11,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -832,
+        -1024,
         48
       ],
       "id": "2d74c115-389d-4fce-99bd-90d34bc4c714",
@@ -45,7 +45,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -608,
+        -576,
         48
       ],
       "id": "652e633e-a34d-4f93-9c3f-6448f4a92c36",
@@ -286,6 +286,57 @@
           "name": "Google Calendar account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8e7174ef-eba6-4429-8cb0-1dc9d0c8c6cd",
+              "leftValue": "={{ $json.headers.origin }}",
+              "rightValue": "https://khaleque-it.com",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -800,
+        48
+      ],
+      "id": "3eefd7e3-ad95-4ba5-a7da-916c4f9a3cb6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "{\"error\": \"Unauthorized origin domain.\"}",
+        "options": {
+          "responseCode": 403
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -640,
+        224
+      ],
+      "id": "3b7aa3a8-ba39-4ec8-859a-12459931e775",
+      "name": "Respond to Webhook"
     }
   ],
   "pinData": {
@@ -327,7 +378,7 @@
       "main": [
         [
           {
-            "node": "If Check Action",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -442,6 +493,24 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If Check Action",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -452,7 +521,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "5111a530-a5f0-400f-8499-b9d4c623aeb5",
+  "versionId": "eccf7ddb-9583-407e-8f5b-4e615f11d291",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3ea6496d728c98b23597b446bd009c2394751dfb58d237e69346212a0717cf14"
