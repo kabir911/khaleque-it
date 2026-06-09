@@ -7,9 +7,8 @@ export default function ElevenLabsWidget() {
   let wTimer = null;
 
   const setWidgetAttributes = () => {
-    console.log('setting attributes:');
     try {
-      if (widgetRef && widgetRef.current) {
+      if (widgetRef && widgetRef.current && widgetRef.current.shadowRoot) {
         const shadowHost = widgetRef.current.shadowRoot 
         ? widgetRef.current 
         : widgetRef.current.querySelector('*')?.shadowRoot ? widgetRef.current.querySelector('*') : null;
@@ -22,7 +21,11 @@ export default function ElevenLabsWidget() {
           const childDivStartCall = shadowHost.shadowRoot.querySelector('span.block.whitespace-nowrap.max-w-64.truncate.px-1\\.5'); 
           if (childDivStartCall) {
             childDivStartCall.textContent = t('widget.start');
-          }          
+          }
+          const childDivSendMsgPH = shadowHost.shadowRoot.querySelector('textarea.w-full.h-full.resize-none.bg-base.leading-5.outline-hidden.text-sm.text-base-primary.placeholder\\:text-base-subtle.p-3.pb-\\[60px\\].max-h-full.field-sizing-content');
+          if (childDivSendMsgPH) {
+            childDivSendMsgPH.setAttribute('placeholder', t('widget.msgPlaceHolder'));
+          }
         }
       }
     } catch (e) {
@@ -84,7 +87,8 @@ export default function ElevenLabsWidget() {
     // 3. Render the official web component using your unique Agent ID
     <elevenlabs-convai
       ref={widgetRef}
-      agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}      
+      agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}    
+      language={lang}
       action-text={t('widget.action')}
       start-call-text={t('widget.start')}
       end-call-text={t('widget.end')}

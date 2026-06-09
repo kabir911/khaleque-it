@@ -14,7 +14,8 @@
     "start": "Start a call",
     "end": "End",
     "listen": "Listen",
-    "speak": "Speak"
+    "speak": "Speak",
+    "msgPlaceHolder": "Send a message..."
   },
   "hero": {
     "eyebrow": "AI & IT Consulting · Frankfurt am Main",

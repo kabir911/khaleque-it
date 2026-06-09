@@ -14,7 +14,8 @@
     "start": "Starten Sie einen Anruf",
     "end": "Enden",
     "listen": "Hören",
-    "speak": "Sprechen"
+    "speak": "Sprechen",
+    "msgPlaceHolder": "Schicken Sie eine nachricht..."
   },
   "hero": {
     "eyebrow": "KI- & IT-Beratung · Frankfurt am Main",
