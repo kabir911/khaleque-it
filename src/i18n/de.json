@@ -134,13 +134,16 @@
     "title": "Transparente Preise für jede Phase",
     "subtitle": "Wählen Sie eine einzelne Phase oder den gesamten Weg. Richtpreise – jedes Unternehmen ist anders, Ihr genaues Angebot folgt nach dem kostenlosen Erstgespräch.",
     "currencyNote": "Alle Preise in EUR, zzgl. USt.",
+    "or": "oder",
     "tiers": [
       {
-        "name": "Beratung",
+        "name": "Beratung (optional)",
         "tagline": "Klarheit & ein Plan",
         "price": "150 €",
+        "discountedPrice": "€0",
+        "discountedText":"mit Umsetzung & Integration",
         "unit": "/ Stunde",
-        "altPrice": "oder 890 € / Strategietag",
+        "altPrice": "oder maximal 6 Stunden kosten pro Strategietag",
         "features": [
           "Arbeitssitzung vor Ort oder online",
           "Geschäfts- & Prozessanalyse",
@@ -149,13 +152,14 @@
           "Werkzeug- & Budgetberatung",
           "Keine Verpflichtung zur Fortsetzung"
         ],
-        "cta": "Hier starten",
+        "cta": "Ich brauche beratung",
         "highlight": false
       },
       {
         "name": "Umsetzung & Integration",
         "tagline": "Komplett für Sie erledigt",
         "price": "ab 1.900 €",
+        "discountedPrice": "",
         "unit": "/ Projekt",
         "altPrice": "pro Lösung kalkuliert",
         "features": [
@@ -173,6 +177,7 @@
         "name": "Betrieb & Pflege",
         "tagline": "Dauerhaft sorgenfrei",
         "price": "ab 290 €",
+        "discountedPrice": "",
         "unit": "/ Monat",
         "altPrice": "jederzeit kündbar",
         "features": [

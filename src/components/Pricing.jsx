@@ -47,8 +47,20 @@ export default function Pricing() {
               <h3 className="text-lg font-bold text-navy-900">{tier.name}</h3>
               <p className="mt-1 text-sm text-navy-500">{tier.tagline}</p>
               <div className="mt-5 flex items-baseline gap-1">
-                <span className="text-3xl font-extrabold text-navy-900">{tier.price}</span>
-                <span className="text-sm font-medium text-navy-500">{tier.unit}</span>
+                {tier.discountedPrice === '' && (
+                  <div>
+                    <span className="text-3xl font-extrabold text-navy-900">{tier.price}</span>
+                    <span className="text-sm font-medium text-navy-500">{tier.unit}</span>
+                  </div>)}
+                {tier.discountedPrice !== '' && (
+                  <div>
+                  <span className="text-3xl font-extrabold text-navy-900">{tier.price}</span>                  
+                  &nbsp;{t('pricing.or')}&nbsp;
+                  <span className="text-3xl font-extrabold text-navy-900">{tier.discountedPrice}</span>
+                  <span className="text-sm font-medium text-navy-500">{tier.unit}</span>
+                  &nbsp;<span className="text-sm font-medium text-navy-500">{tier.discountedText}</span>
+                  </div>
+                )}                
               </div>
               <p className="mt-1 text-xs text-navy-400">{tier.altPrice}</p>
 

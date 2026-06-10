@@ -134,13 +134,16 @@
     "title": "Transparent pricing for each stage",
     "subtitle": "Pick a single stage or the full journey. Indicative pricing — every business is different, so your exact quote follows the free discovery call.",
     "currencyNote": "All prices in EUR, excl. VAT (USt.).",
+    "or": "or",
     "tiers": [
       {
-        "name": "Consultancy",
+        "name": "Consultancy (optional)",
         "tagline": "Clarity & a plan",
         "price": "€150",
+        "discountedPrice": "€0",
+        "discountedText": "with Build & Integration",
         "unit": "/ hour",
-        "altPrice": "or €890 / strategy day",
+        "altPrice": "or max 6 hours cost per strategy day",
         "features": [
           "On-site or online working session",
           "Business & process review",
@@ -149,13 +152,14 @@
           "Tool & budget guidance",
           "No obligation to continue"
         ],
-        "cta": "Start here",
+        "cta": "I need consultancy",
         "highlight": false
       },
       {
         "name": "Build & Integration",
         "tagline": "Done-for-you setup",
         "price": "from €1,900",
+        "discountedPrice": "",
         "unit": "/ project",
         "altPrice": "scoped per solution",
         "features": [
@@ -173,6 +177,7 @@
         "name": "Operations & Care",
         "tagline": "Ongoing peace of mind",
         "price": "from €290",
+        "discountedPrice": "",
         "unit": "/ month",
         "altPrice": "cancel anytime",
         "features": [
