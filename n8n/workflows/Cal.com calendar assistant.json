@@ -1,0 +1,806 @@
+{
+  "name": "Cal.com calendar assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elevenlabs-booking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1024,
+        48
+      ],
+      "id": "2d74c115-389d-4fce-99bd-90d34bc4c714",
+      "name": "Webhook",
+      "webhookId": "f5bc2932-9c44-421f-924d-332609dfed07"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list"
+        },
+        "returnAll": true,
+        "options": {
+          "timeMin": "={{ $json.body.date }}T00:00:00Z",
+          "timeMax": "={{ $json.body.date }}T23:59:59Z",
+          "singleEvents": true
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -224
+      ],
+      "id": "21039d75-8659-4ddf-a3a5-a7f92e95cc1b",
+      "name": "Google Calendar - Get Events",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "start": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "end": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).plus({ minutes: 30 }).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "additionalFields": {
+          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }} with email {{ $json.body.email }}",
+          "summary": "=  IT Consultation - {{ $json.body.name }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        592,
+        352
+      ],
+      "id": "4e4b4963-f5af-4273-a741-53241da76acf",
+      "name": "Google Calendar - Create Event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        288,
+        144
+      ],
+      "id": "8d9df8b5-780f-43fa-8d24-f019ccc73b10",
+      "name": "Respond Success"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        64,
+        -240
+      ],
+      "id": "2296e45b-3727-42cc-9c7b-93c932826790",
+      "name": "Respond Slots"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "start": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "end": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).plus({ minutes: 30 }).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}",
+        "additionalFields": {
+          "attendees": [
+            ""
+          ],
+          "conferenceDataUi": {
+            "conferenceDataValues": {
+              "conferenceSolution": "hangoutsMeet"
+            }
+          },
+          "description": "=Automatic booking by ElevenLabs Voice AI Assistant - {{ $json.body.name }} contactable on {{ $json.body.phone }} with email {{ $json.body.email }}",
+          "summary": "=  IT Consultation - {{ $json.body.name }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        592,
+        144
+      ],
+      "id": "d006c395-d3b1-425c-8086-c59936a693ef",
+      "name": "Google Calendar - Create Event (VC)",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2ddd60d8-d345-464b-a499-ac4ce3e1492e",
+              "leftValue": "={{ $json.body.video_call }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -384,
+        240
+      ],
+      "id": "59972d33-b9d4-4d95-8192-73c37b10b872",
+      "name": "with video call"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "kabir911.kk@gmail.com",
+          "mode": "list",
+          "cachedResultName": "kabir911.kk@gmail.com"
+        },
+        "eventId": "={{ $json.body.event_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        592,
+        -48
+      ],
+      "id": "05b6322c-39a4-41d0-ab48-0eb9a2e34522",
+      "name": "Delete an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "h03vRmHDXpEjWf0k",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8e7174ef-eba6-4429-8cb0-1dc9d0c8c6cd",
+              "leftValue": "={{ $json.headers.origin || $json.headers.referer || '' }}",
+              "rightValue": "https://khaleque-it.com",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "942c08f8-7e17-4481-8efe-949c112451d8",
+              "leftValue": "={{ $json.headers.origin || $json.headers.referer || '' }}",
+              "rightValue": "http://localhost:5173",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -800,
+        48
+      ],
+      "id": "3eefd7e3-ad95-4ba5-a7da-916c4f9a3cb6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "{\"error\": \"Unauthorized origin domain.\"}",
+        "options": {
+          "responseCode": 403
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -816,
+        288
+      ],
+      "id": "3b7aa3a8-ba39-4ec8-859a-12459931e775",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cal.com/v2/bookings/{{ $json.body.BookingUid }}/cancel",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2026-02-25"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "cancellationReason",
+              "value": "User requested cancellation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        64,
+        -48
+      ],
+      "id": "e70bbeb4-b526-47a4-aa62-d88af4ff9353",
+      "name": "cancel booking",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "xUmGX26SKMMkwo2g",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.cal.com/v2/slots",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "start",
+              "value": "={{ $json.body.date }}T00:00:00Z"
+            },
+            {
+              "name": "end",
+              "value": "={{ $json.body.date }}T23:59:59Z"
+            },
+            {
+              "name": "eventTypeId",
+              "value": "5920581,5917968"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2024-09-04"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -384,
+        -240
+      ],
+      "id": "fde62cd3-903c-46f0-a74b-70d1fbb792e3",
+      "name": "get free slots",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "xUmGX26SKMMkwo2g",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cal.com/v2/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2026-02-25"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "start",
+              "value": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}"
+            },
+            {
+              "name": "eventTypeId",
+              "value": "={{ 5920581 }}"
+            },
+            {
+              "name": "attendee",
+              "value": "={{\n  {\n    \"name\": $json.body.name,\n    \"phoneNumber\": $json.body.phone,\n    \"email\": $json.body.email,\n    \"timeZone\": \"Europe/Berlin\" \n  }\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        64,
+        144
+      ],
+      "id": "6a0a7aa8-f7e0-4574-ba3d-8e0fd417cc47",
+      "name": "create booking (vc)",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "xUmGX26SKMMkwo2g",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cal.com/v2/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2026-02-25"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "start",
+              "value": "={{ DateTime.fromISO($json.body.date + 'T' + $json.body.time).toFormat(\"yyyy-MM-dd'T'HH:mmZZ\") }}"
+            },
+            {
+              "name": "eventTypeId",
+              "value": "={{ 5917968 }}"
+            },
+            {
+              "name": "attendee",
+              "value": "={{\n  {\n    \"name\": $json.body.name,\n    \"phoneNumber\": $json.body.phone,\n    \"email\": $json.body.email,\n    \"timeZone\": \"Europe/Berlin\" \n  }\n}}"
+            },
+            {
+              "name": "location",
+              "value": "in person"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        64,
+        368
+      ],
+      "id": "23f4ce76-d524-4a32-9316-078693909685",
+      "name": "create booking",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "xUmGX26SKMMkwo2g",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.action }}",
+                    "rightValue": "check",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "d00666f1-61ca-4b13-b911-fc1f7bfe5786"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "check"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c3e49cce-353d-421d-ab5c-ad9a4ddcb556",
+                    "leftValue": "={{ $json.body.action }}",
+                    "rightValue": "get",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "get"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "256d53af-dbb0-4ffd-8560-4875264b0412",
+                    "leftValue": "={{ $json.body.action }}",
+                    "rightValue": "cancel",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "cancel"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -592,
+        16
+      ],
+      "id": "b2179b6c-050d-4bef-9bea-faa43b8f638d",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "url": "https://api.cal.com/v2/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "afterStart",
+              "value": "={{ $json.body.date }}T00:00:00Z"
+            },
+            {
+              "name": "beforeEnd",
+              "value": "={{ $json.body.date }}T23:59:59Z"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2026-05-01"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -384,
+        -48
+      ],
+      "id": "e3953597-286c-4e98-8f3d-38a1b2dc54ed",
+      "name": "get bookings",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "xUmGX26SKMMkwo2g",
+          "name": "Bearer Auth account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "mxcsfg3rqluuvsmu.myfritz.net:5679",
+            "x-real-ip": "172.19.0.1",
+            "x-forwarded-for": "172.19.0.1",
+            "x-forwarded-proto": "https",
+            "x-forwarded-host": "mxcsfg3rqluuvsmu.myfritz.net:5679",
+            "connection": "upgrade",
+            "content-length": "115",
+            "user-agent": "curl/8.15.0",
+            "accept": "*/*",
+            "content-type": "application/json"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "action": "book",
+            "date": "2026-06-05",
+            "time": "14:00",
+            "name": "Max Mustermann",
+            "phone": "+491701234567"
+          },
+          "webhookUrl": "https://mxcsfg3rqluuvsmu.myfritz.net:5679/webhook/elevenlabs-booking",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar - Get Events": {
+      "main": [
+        []
+      ]
+    },
+    "Google Calendar - Create Event": {
+      "main": [
+        []
+      ]
+    },
+    "Google Calendar - Create Event (VC)": {
+      "main": [
+        []
+      ]
+    },
+    "with video call": {
+      "main": [
+        [
+          {
+            "node": "create booking (vc)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "create booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get free slots": {
+      "main": [
+        [
+          {
+            "node": "Respond Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cancel booking": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create booking (vc)": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create booking": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "get free slots",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get bookings",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "cancel booking",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "with video call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get bookings": {
+      "main": [
+        [
+          {
+            "node": "Respond Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "d1fd6ff2-fc20-4fe4-b82e-2b217bdf650c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3ea6496d728c98b23597b446bd009c2394751dfb58d237e69346212a0717cf14"
+  },
+  "nodeGroups": [],
+  "id": "8Ieozue3TRCq9qIA",
+  "tags": []
+}
